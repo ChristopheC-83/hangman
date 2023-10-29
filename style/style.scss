@@ -1,0 +1,32 @@
+@import "libs/reset";
+@import "libs/variables";
+@import "libs/container";
+@import "libs/mixins";
+@import "libs/polices";
+@import "libs/raccourcis";
+@import "./sous_fichiers/content";
+@import "./sous_fichiers/main_frame";
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color : $text_light1;
+}
+
+footer,
+header {
+  text-align: center;
+  background-color: $bgc_light;
+  padding: 20px;
+}
+
+body.dark {
+    
+  color : $text_dark1;
+  footer,
+  header {
+    background-color: $bgc_dark;
+  }
+}

@@ -1,0 +1,50 @@
+h1,
+h2,
+h3,
+h4,
+p,a,
+label,
+input,
+button {
+  font-family: "Roboto Condensed", sans-serif;
+  margin:0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+h1 {
+  font-size: clamp(32px, calc(24px + 2.2vw), 60px);
+  letter-spacing: calc(1px + 0.12vw);
+  text-shadow: 1px 1px 2px black;
+  
+}
+
+
+
+h2 {
+  font-size: clamp(23px, calc(20px + 1.65vw), 40px);
+  letter-spacing: calc(1px + 0.04vw);
+  text-shadow: 1px 1px 2px black;
+}
+h3 {
+  font-size: clamp(20px, calc(20px + 1vw), 29px);
+  letter-spacing: calc(1px + 0.02vw);
+  text-shadow: 1px 1px 2px black;
+}
+h4{
+  font-size: clamp(18px, calc(14px + 0.7vw), 22px);
+  line-height: clamp(22px, calc(20px + 1.2vw), 35px);
+  text-shadow: 1px 1px 2px black;
+  font-weight: normal;
+}
+
+
+
+p {
+  font-size: clamp(16px, calc(14px + 0.6vw), 20px);
+  line-height: clamp(20px, calc(20px + 1vw), 33px);
+}

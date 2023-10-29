@@ -1,0 +1,25 @@
+.container {
+    width: 94%;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 1600px;
+    background-color: $bgc_light;
+    border : 1px solid $border_light1;
+    border-radius: 5px;
+    
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .container {
+      width: 96%;
+      margin:20px auto;
+    }
+  }
+  @media all and (max-width : 768px) {
+  
+    .container{
+      width: 98%;
+      margin: 20px auto;
+      padding-top: 80px;
+    }
+  }
