@@ -472,4 +472,8 @@ header {
 
 header {
   position: relative;
+}
+
+.dnone {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
