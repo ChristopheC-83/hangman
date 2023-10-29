@@ -1,6 +1,6 @@
 .container {
     width: 94%;
-    margin: 10px auto;
+    margin: 5px auto;
     padding: 10px;
     max-width: 1600px;
     background-color: $bgc_light;
@@ -12,14 +12,11 @@
   @media screen and (max-width: 1200px) {
     .container {
       width: 96%;
-      margin:20px auto;
     }
   }
   @media all and (max-width : 768px) {
   
     .container{
       width: 98%;
-      margin: 20px auto;
-      padding-top: 80px;
     }
   }

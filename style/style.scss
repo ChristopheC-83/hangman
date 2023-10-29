@@ -6,13 +6,15 @@
 @import "libs/raccourcis";
 @import "./sous_fichiers/content";
 @import "./sous_fichiers/main_frame";
+@import "./libs/dark_mode";
+@import "./libs/toggle_switch";
 
 body {
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color : $text_light1;
+  color: $text_light2;
 }
 
 footer,
@@ -22,11 +24,6 @@ header {
   padding: 20px;
 }
 
-body.dark {
-    
-  color : $text_dark1;
-  footer,
-  header {
-    background-color: $bgc_dark;
-  }
+header {
+  position: relative;
 }
