@@ -240,6 +240,7 @@ p {
   border-radius: 5px;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-rows: 2fr 4fr;
 }
 
 .help {
@@ -281,8 +282,13 @@ p {
   transition: all 0.3s;
 }
 
+.score {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .hangMan_token {
-  grid-row: span 2;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
