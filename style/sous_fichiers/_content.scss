@@ -27,8 +27,8 @@
       border-radius: 10px;
       text-transform: uppercase;
       border: 3px solid $border_light2;
-      @include flexMid;
       background-color: $components_light2;
+      @include flexMid;
       cursor: pointer;
       transition: all 0.3s;
       &:hover {

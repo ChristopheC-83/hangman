@@ -1,8 +1,63 @@
 body.dark {
   transition: all 0.3s;
   color: $text_dark1;
+  background-color: #333;
   footer,
   header {
     background-color: $bgc_dark;
+  }
+
+  .container {
+    background-color: $bgc_dark;
+    border: 1px solid $border_dark1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  a,
+  label,
+  input,
+  button {
+    color: $text_dark1;
+  }
+
+  .letters {
+    border: 1px solid $border_dark2;
+
+    .vowels,
+    .consonants {
+      h3 {
+        border: 3px solid $border_dark2;
+        background-color: $components_dark2;
+        &:hover {
+          border: 3px solid $border_dark1;
+          background-color: $components_dark1;
+        }
+      }
+    }
+  }
+
+  .hangman {
+    border: 1px solid $border_dark2;
+  }
+
+  .info {
+    border: 1px solid $border_dark2;
+  }
+  #buy_vowel,
+  #buy_consonant,
+  #buy_ht {
+    border: 3px solid $border_dark2;
+    background-color: $components_dark2;
+  }
+  .word {
+    border: 1px solid $border_dark2;
+    h2 {
+      border: 3px solid $border_dark2;
+      background-color: $components_dark2;
+    }
   }
 }
