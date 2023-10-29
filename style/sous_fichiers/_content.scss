@@ -36,14 +36,15 @@
         background-color: $components_light1;
         transform: scale(1.1);
       }
-      &.right {
-        background-color: #55e055;
-      }
-      &.wrong {
-        background-color: #e05555;
-      }
     }
   }
+}
+
+.wrong {
+  background-color: #e05555 !important;
+}
+.right {
+  background-color: #55e055 !important;
 }
 .top {
   width: 100%;

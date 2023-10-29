@@ -195,13 +195,13 @@ p {
   background-color: #E8E8E8;
   transform: scale(1.1);
 }
-.letters .vowels h3.right,
-.letters .consonants h3.right {
-  background-color: #55e055;
+
+.wrong {
+  background-color: #e05555 !important;
 }
-.letters .vowels h3.wrong,
-.letters .consonants h3.wrong {
-  background-color: #e05555;
+
+.right {
+  background-color: #55e055 !important;
 }
 
 .top {
@@ -282,7 +282,7 @@ p {
   transition: all 0.3s;
 }
 
-.score {
+.resultat {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

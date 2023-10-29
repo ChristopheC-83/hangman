@@ -70,30 +70,63 @@ const letters = document.querySelectorAll(".letter");
 const scoreShow = document.querySelector(".score");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
-let score = 0;
-let record;
+const tests_left = document.querySelector(".tests_left");
+let testLeftText = 7;
+let scoreText = 0;
+let recordText;
 let chosenLetter;
-let chosenWord=initialWords[getRandomNumber(initialWords.length)].toUpperCase();
+let chosenWord =
+  initialWords[getRandomNumber(initialWords.length)].toUpperCase();
 let wordInArray = chosenWord.split("");
 
 // gestion record
-if (!localStorage.getItem("record")) {
-  localStorage.setItem("record", 0);
-  record = 0;
-  recordShow.textContent = record;
-} else {
-  record = localStorage.getItem("record");
-  recordShow.textContent = record;
+function updateRecord() {
+  if (!localStorage.getItem("record")) {
+    localStorage.setItem("record", 0);
+    recordText = 0;
+  } else {
+    recordText = localStorage.getItem("record");
+  }
+  recordShow.textContent = recordText;
 }
 
+// gestion affichage
+function updateScore(score) {
+  scoreShow.textContent = score;
+}
+
+function updateTestLeft(testLeftText) {
+  tests_left.textContent = testLeftText;
+}
+
+// controle lettre
 
 function checkLetter(chosenLetter) {
+  const letterElement = document.querySelector(`#${chosenLetter}`);
+
+  if (letterElement.classList.contains("right") ||letterElement.classList.contains("wrong") ){
+    alert('Vous avez déjà joué cette lettre ')
+    return
+  }
   wordInArray.forEach((letter, index) => {
-    if(letter===chosenLetter){
-      letters_word[index].textContent = letter
+    if (chosenLetter === letter) {
+      letters_word[index].textContent = letter;
+      scoreText += 1;
+      updateScore(scoreText);
+      letterElement.classList.add("right");
     }
-  
-  })
+  });
+  if (!letterElement.classList.contains("right")) {
+    letterElement.classList.add("wrong");
+    testLeftText -= 1;
+    updateTestLeft(testLeftText);
+
+    if (testLeftText === 0) {
+      setTimeout(() => {
+        alert("Vous avez perdu !");
+      }, 150);
+    }
+  }
 }
 
 // choix lettre sur écran
@@ -116,16 +149,17 @@ function getRandomNumber(max) {
 }
 // selection d'un mot de la liste et affichage
 function showWord() {
- 
-  wordInArray.forEach(letter => {
-    let h2Element = document.createElement('h2');
-    h2Element.className = 'letter_word';
-    h2Element.textContent = '_'
-    word.appendChild(h2Element); 
+  wordInArray.forEach((letter) => {
+    let h2Element = document.createElement("h2");
+    h2Element.className = "letter_word";
+    h2Element.textContent = "_";
+    word.appendChild(h2Element);
   });
 }
+
+updateScore(scoreText);
+updateTestLeft(testLeftText);
+updateRecord();
+console.log("record :" + recordText);
 showWord();
-const letters_word = document.querySelectorAll('.letter_word')
-console.log(letters_word);
-console.log(chosenWord[0]);
-function updateScore() {}
+const letters_word = document.querySelectorAll(".letter_word");
