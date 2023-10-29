@@ -389,6 +389,15 @@ p {
   box-shadow: none;
 }
 
+body.dark {
+  transition: all 0.3s;
+  color: #B4B4B4;
+}
+body.dark footer,
+body.dark header {
+  background-color: #191919;
+}
+
 body {
   width: 100%;
   min-height: 100vh;
