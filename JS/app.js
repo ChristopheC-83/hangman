@@ -17,8 +17,8 @@ const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
 let oldScore;
 let testLeftText = 7;
-let scoreText = localStorage.getItem("score")
-  ? parseInt(localStorage.getItem("score"))
+let scoreText = sessionStorage.getItem("score")
+  ? parseInt(sessionStorage.getItem("score"))
   : 0;
 let recordText;
 let chosenLetter;
@@ -115,7 +115,7 @@ function testWin(scoreText, wordInArray, recordText) {
 
 function youWin(scoreText) {
   let score = scoreText;
-  localStorage.setItem("score", score);
+  sessionStorage.setItem("score", score);
   setTimeout(() => {
     alert("c'est gagné !");
     reset();
