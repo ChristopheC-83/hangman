@@ -1,13 +1,11 @@
 import { initialWords } from "./modules/wordsList.js";
-import { getRandomNumber , reset } from "./modules/basisFunctions.js";
+import { getRandomNumber , reset , updateRecord, updateScore, updateTestLeft, testWin} from "./modules/basisFunctions.js";
 
 const btnReset = document.querySelector(".reset");
 const btnPropose = document.querySelector(".propose");
 const letters = document.querySelectorAll(".letter");
-const scoreShow = document.querySelector(".score");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
-const tests_left = document.querySelector(".tests_left");
 let testLeftText = 7;
 let scoreText = 0;
 let recordText;
@@ -17,7 +15,7 @@ let chosenWord =
 let wordInArray = chosenWord.split("");
 
 // gestion record
-function updateRecord() {
+function showRecord() {
   if (!localStorage.getItem("record")) {
     localStorage.setItem("record", 0);
     recordText = 0;
@@ -25,15 +23,6 @@ function updateRecord() {
     recordText = localStorage.getItem("record");
   }
   recordShow.textContent = recordText;
-}
-
-// gestion affichage
-function updateScore(score) {
-  scoreShow.textContent = score;
-}
-
-function updateTestLeft(testLeftText) {
-  tests_left.textContent = testLeftText;
 }
 
 // controle lettre
@@ -55,7 +44,7 @@ function checkLetter(chosenLetter) {
       updateScore(scoreText);
       letterElement.classList.add("right");
       setTimeout(() => {
-        testWin(scoreText, wordInArray);
+        testWin(scoreText, wordInArray, recordText);
       }, 150);
     }
   });
@@ -66,18 +55,13 @@ function checkLetter(chosenLetter) {
 
     if (testLeftText === 0) {
       setTimeout(() => {
-        if(scoreText > recordText ){
-          localStorage.setItem("record", scoreText)
-        
-        }
+        updateRecord(scoreText,recordText)
         const tryAgain = confirm("Vous avez perdu !  recommencer ?");
         tryAgain ? reset() : alert("A bientôt");
       }, 150);
     }
   }
 }
-
-
 
 // choix lettre sur écran
 letters.forEach((letter) => {
@@ -104,16 +88,11 @@ function showWord() {
   });
 }
 
-// si victoire
-function testWin(scoreText, wordInArray) {
-  if (scoreText === wordInArray.length) {
-    alert("c'est gagné !");
-  }
-}
+
 
 updateScore(scoreText);
 updateTestLeft(testLeftText);
-updateRecord();
+showRecord();
 showWord();
 
 const letters_word = document.querySelectorAll(".letter_word");
