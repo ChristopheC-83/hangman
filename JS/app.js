@@ -77,6 +77,9 @@ function checkLetter(chosenLetter) {
       showRecord();
       setTimeout(() => {
         youLose();
+        sessionStorage.removeItem('score')
+        scoreText=0
+        updateScore(0)
       }, 150);
     }
   }

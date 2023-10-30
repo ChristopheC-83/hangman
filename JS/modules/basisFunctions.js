@@ -43,9 +43,10 @@ export function resetKey(letters) {
 
 // you lose
 export function youLose() {
+  sessionStorage.removeItem('score')
+  updateScore(0)
   const tryAgain = confirm("Vous avez perdu !  recommencer ?");
   tryAgain ? reset() : alert("A bientôt");
-  localStorage.removeItem('score')
 }
 
 // MAJ record
