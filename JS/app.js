@@ -1,18 +1,33 @@
 import { initialWords } from "./modules/wordsList.js";
-import { getRandomNumber , reset , updateRecord, updateScore, updateTestLeft, testWin} from "./modules/basisFunctions.js";
+import {
+  numberWord,
+  reset,
+  newWordToPlay,
+  resetKey,
+  updateRecord,
+  updateScore,
+  updateTestLeft,
+  youLose,
+} from "./modules/basisFunctions.js";
 
 const btnReset = document.querySelector(".reset");
 const btnPropose = document.querySelector(".propose");
 const letters = document.querySelectorAll(".letter");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
+let oldScore;
 let testLeftText = 7;
-let scoreText = 0;
+let scoreText = localStorage.getItem("score")
+  ? parseInt(localStorage.getItem("score"))
+  : 0;
 let recordText;
 let chosenLetter;
-let chosenWord =
-  initialWords[getRandomNumber(initialWords.length)].toUpperCase();
+
+let chosenWord = newWordToPlay();
+console.log(chosenWord);
 let wordInArray = chosenWord.split("");
+
+let arrayWord = wordInArray;
 
 // gestion record
 function showRecord() {
@@ -43,9 +58,13 @@ function checkLetter(chosenLetter) {
       scoreText += 1;
       updateScore(scoreText);
       letterElement.classList.add("right");
-      setTimeout(() => {
-        testWin(scoreText, wordInArray, recordText);
-      }, 150);
+
+      arrayWord = arrayWord.filter((elt) => elt !== letter);
+      if (arrayWord.length === 0) {
+        setTimeout(() => {
+          testWin(scoreText, wordInArray, recordText);
+        }, 150);
+      }
     }
   });
   if (!letterElement.classList.contains("right")) {
@@ -54,10 +73,10 @@ function checkLetter(chosenLetter) {
     updateTestLeft(testLeftText);
 
     if (testLeftText === 0) {
+      updateRecord(scoreText, recordText);
+      showRecord();
       setTimeout(() => {
-        updateRecord(scoreText,recordText)
-        const tryAgain = confirm("Vous avez perdu !  recommencer ?");
-        tryAgain ? reset() : alert("A bientôt");
+        youLose();
       }, 150);
     }
   }
@@ -77,7 +96,6 @@ document.addEventListener("keydown", (event) => {
     checkLetter(chosenLetter);
   }
 });
-
 // selection d'un mot de la liste et affichage
 function showWord() {
   wordInArray.forEach((letter) => {
@@ -88,7 +106,21 @@ function showWord() {
   });
 }
 
+// si victoire
+function testWin(scoreText, wordInArray, recordText) {
+  updateRecord(scoreText, recordText);
+  showRecord();
+  youWin(scoreText);
+}
 
+function youWin(scoreText) {
+  let score = scoreText;
+  localStorage.setItem("score", score);
+  setTimeout(() => {
+    alert("c'est gagné !");
+    reset();
+  }, 150);
+}
 
 updateScore(scoreText);
 updateTestLeft(testLeftText);

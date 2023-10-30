@@ -57,6 +57,34 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+.record {
+  display: inline-block;
+}
+.newRecord {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+  overflow: hidden;
+  .newRecordAnimation {
+    color: red !important;
+    animation : animNewRecord 3s forwards;
+  }
+
+  @keyframes animNewRecord {
+    0%{
+      transform : translateY(100%);
+    }
+    10%{transform : translateY(0%);}
+    90%{transform : translateY(0%);}
+    
+    100%{
+      transform : translateY(-100%);
+    }
+  }
+}
 
 .hangMan_token {
   display: flex;
