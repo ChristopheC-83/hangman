@@ -1,0 +1,22 @@
+.action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.btnAction {
+
+    font-size: clamp(16px, calc(16px + 1.5vw), 30px);
+    border-radius: 10px;
+    border: 3px solid $border_light2;
+    background-color: $components_light2;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+        border: 3px solid $border_light1;
+        background-color: $components_light1;
+        transform: scale(1.1);
+      }
+}

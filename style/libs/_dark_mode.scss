@@ -60,4 +60,14 @@ body.dark {
       background-color: $components_dark2;
     }
   }
+  .btnAction{
+  
+    border: 3px solid $border_dark2;
+    background-color: $components_dark2;
+    &:hover {
+      border: 3px solid $border_dark1;
+      background-color: $components_dark1;
+      transform: scale(1.1);
+    }
+  }
 }
