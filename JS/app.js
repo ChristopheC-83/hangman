@@ -124,8 +124,12 @@ function youWin(scoreText) {
 }
 
 btnReset.addEventListener("click", () => {
-  reset();
   sessionStorage.removeItem("score");
+  updateRecord(scoreText, recordText);
+  showRecord();
+  setTimeout(() => {
+    reset();
+  }, 1000);
 });
 
 btnPropose.addEventListener("click", () => {

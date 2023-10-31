@@ -294,6 +294,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  position: relative;
 }
 
 .record {
@@ -301,6 +302,9 @@ p {
 }
 
 .newRecord {
+  position: absolute;
+  bottom: 0;
+  right: -10px;
   width: 100%;
   text-align: center;
   display: inline-block;
@@ -318,10 +322,10 @@ p {
     transform: translateY(100%);
   }
   10% {
-    transform: translateY(0%);
+    transform: translateY(20%);
   }
   90% {
-    transform: translateY(0%);
+    transform: translateY(20%);
   }
   100% {
     transform: translateY(-100%);
