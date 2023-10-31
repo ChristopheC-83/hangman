@@ -69,4 +69,8 @@ body.dark {
       transform: scale(1.1);
     }
   }
+  .imgHangman{
+  
+    filter:drop-shadow(2px 2px 8px $bgc_light);
+  }
 }

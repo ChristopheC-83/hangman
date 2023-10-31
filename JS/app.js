@@ -13,6 +13,7 @@ const btnPropose = document.querySelector(".propose");
 const letters = document.querySelectorAll(".letter");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
+const imgHangman = document.querySelectorAll(".imgHangman");
 let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
@@ -35,10 +36,18 @@ function showRecord() {
   recordShow.textContent = recordText;
 }
 
+function drawingHangman(testLeftText) {
+  let numberImg = 0;
+  numberImg = testMax - testLeftText ;
+  console.log(numberImg);
+  imgHangman[numberImg].classList.remove('dnone')
+}
+
 // perte 1 point mauvaise lettre ou proposition
 function oneLostPoint() {
   testLeftText -= 1;
   updateTestLeft(testLeftText, testMax);
+  drawingHangman(testLeftText);
 
   if (testLeftText === 0) {
     updateRecord(scoreText, recordText);
@@ -76,7 +85,6 @@ function goodLetter(letterElement) {
 function badLetter(letterElement) {
   if (!letterElement.classList.contains("right")) {
     letterElement.classList.add("wrong");
-
     oneLostPoint();
   }
 }
