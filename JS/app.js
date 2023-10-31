@@ -20,6 +20,7 @@ const victory = document.querySelector(".victory");
 const defeat = document.querySelector(".defeat");
 const unknowWord = document.querySelector(".unknowWord");
 const nextWord = document.querySelectorAll(".nextWord");
+let keyboard = 0;
 let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
@@ -41,7 +42,7 @@ function showRecord() {
   }
   recordShow.textContent = recordText;
 }
-
+// dessin du pendu
 function drawingHangman(testLeftText) {
   let numberImg = 0;
   numberImg = testMax - testLeftText;
@@ -53,35 +54,50 @@ function drawingHangman(testLeftText) {
     imgHangman[6].classList.add("dnone");
   }
 }
+// Créez une fonction pour activer l'écoute des événements clavier
+function activateKeyboard() {
+  document.addEventListener("keydown", keydownHandler);
+}
+
+// Créez une fonction pour désactiver l'écoute des événements clavier
+function deactivateKeyboard() {
+  document.removeEventListener("keydown", keydownHandler);
+}
+
+// Ajoutez un gestionnaire d'événements pour les événements clavier
+const keydownHandler = (event) => {
+  if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+    chosenLetter = event.key.toUpperCase();
+    checkLetter(chosenLetter);
+  }
+};
 
 // you lose
 function youLose() {
+  deactivateKeyboard(0);
   sessionStorage.removeItem("score");
   updateScore(0);
-  unknowWord.textContent = sessionStorage.getItem("motADeviner")
-  document.querySelector('.letters').classList.add('dnone')
+  unknowWord.textContent = sessionStorage.getItem("motADeviner");
+  document.querySelector(".letters").classList.add("dnone");
   defeat.classList.remove("dnone");
   defeat.classList.add("modalAnimation");
   overlay2.classList.remove("dnone");
 }
 
 // gestion modale clavier ou souris
-function modalsGestion(event){
+function modalsGestion(event) {
   if (event) {
-    nextWord[
-      event==='defeat'?1:0
-    ].addEventListener("click", () => {
+    nextWord[event === "defeat" ? 1 : 0].addEventListener("click", () => {
       reset();
     });
   }
-  if(event){
+  if (event) {
     document.addEventListener("keyup", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
         reset();
       }
     });
   }
-
 }
 
 // perte 1 point mauvaise lettre ou proposition
@@ -152,6 +168,7 @@ function showWord() {
     h2Element.textContent = "_";
     word.appendChild(h2Element);
   });
+  activateKeyboard();
 }
 
 // si victoire
@@ -197,21 +214,14 @@ letters.forEach((letter) => {
     checkLetter(chosenLetter);
   });
 });
-// choix lettre sur clavier
-document.addEventListener("keydown", (event) => {
-  if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
-    chosenLetter = event.key.toUpperCase();
-    checkLetter(chosenLetter);
-  }
-});
 
 // lancement initial du jeu
 updateScore(scoreText);
 updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
-modalsGestion(defeat)
-modalsGestion(victory)
+modalsGestion(defeat);
+modalsGestion(victory);
 
 console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
 const letters_word = document.querySelectorAll(".letter_word");
