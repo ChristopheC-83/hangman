@@ -6,7 +6,7 @@ import {
   updateTestLeft,
 } from "./modules/basisFunctions.js";
 
-import { reset, youLose } from "./modules/basisActions.js";
+import { reset } from "./modules/basisActions.js";
 
 const btnReset = document.querySelector(".reset");
 const btnPropose = document.querySelector(".propose");
@@ -15,8 +15,11 @@ const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
 const imgHangman = document.querySelectorAll(".imgHangman");
 const overlay = document.querySelector(".overlay");
+const overlay2 = document.querySelector(".overlay2");
 const victory = document.querySelector(".victory");
-const nextWord = document.querySelector(".nextWord");
+const defeat = document.querySelector(".defeat");
+const unknowWord = document.querySelector(".unknowWord");
+const nextWord = document.querySelectorAll(".nextWord");
 let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
@@ -50,6 +53,30 @@ function drawingHangman(testLeftText) {
     imgHangman[6].classList.add("dnone");
   }
 }
+
+// you lose
+function youLose() {
+  sessionStorage.removeItem("score");
+  updateScore(0);
+  unknowWord.textContent = sessionStorage.getItem("motADeviner")
+  defeat.classList.remove("dnone");
+  defeat.classList.add("modalAnimation");
+  overlay2.classList.remove("dnone");
+}
+
+if (defeat) {
+  nextWord[1].addEventListener("click", () => {
+    reset();
+  });
+}
+if(defeat){
+  document.addEventListener("keyup", (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      reset();
+    }
+  });
+}
+
 
 // perte 1 point mauvaise lettre ou proposition
 function oneLostPoint() {
@@ -135,17 +162,14 @@ function youWin(scoreText) {
   victory.classList.remove("dnone");
   victory.classList.add("modalAnimation");
   overlay.classList.remove("dnone");
-  // setTimeout(() => {
-  //   reset();
-  // }, 2500);
 }
-if (nextWord) {
-  nextWord.addEventListener("click", () => {
+
+if (victory) {
+  nextWord[0].addEventListener("click", () => {
     reset();
   });
 }
-
-if(nextWord){
+if(victory){
   document.addEventListener("keyup", (event) => {
     if (event.key === "Enter" || event.keyCode === 13) {
       reset();

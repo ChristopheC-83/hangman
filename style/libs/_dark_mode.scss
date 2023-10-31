@@ -78,10 +78,17 @@ body.dark {
   
     background-color: #7B7B7B90;
   }
-  .victory{
+  .victory, .defeat{
   
     color : $text_dark1;
     border: 3px solid $border_dark2;
     background-color: $components_dark2;
+  }
+
+  .nextWord{
+  
+    color : $text_dark1;
+    border: 3px solid $border_dark1;
+    background-color: $components_dark1;
   }
 }
