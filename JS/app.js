@@ -24,7 +24,7 @@ let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
 let arrayWord = wordInArray; // me permettra de selctionner une lettre à acheter
-
+console.log(imgHangman);
 // gestion record
 function showRecord() {
   if (!localStorage.getItem("record")) {
@@ -38,9 +38,14 @@ function showRecord() {
 
 function drawingHangman(testLeftText) {
   let numberImg = 0;
-  numberImg = testMax - testLeftText ;
+  numberImg = testMax - testLeftText;
   console.log(numberImg);
   imgHangman[numberImg].classList.remove('dnone')
+  if(numberImg===7){
+    imgHangman[4].classList.add('dnone')
+    imgHangman[5].classList.add('dnone')
+    imgHangman[6].classList.add('dnone')
+  }
 }
 
 // perte 1 point mauvaise lettre ou proposition
