@@ -9,11 +9,11 @@ let oldWord;
 export let chosenWord;
 
 // nb aléatoire pour sélection mot dans liste
-
 function getRandomNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
+// renouvellement mots sans repetition
 export function numberWord(max) {
   do {
     newWord = getRandomNumber(max);
@@ -21,32 +21,6 @@ export function numberWord(max) {
   } while (newWord === oldWord);
   oldWord = newWord;
   return newWord;
-}
-
-// reset
-export function reset() {
-  location.reload();
-}
-
-//  reset keys
-
-export function resetKey(letters) {
-  letters.forEach((letter) => {
-    if (letter.classList.contains("right")) {
-      letter.classList.remove("right");
-    }
-    if (letter.classList.contains("wrong")) {
-      letter.classList.remove("wrong");
-    }
-  });
-}
-
-// you lose
-export function youLose() {
-  sessionStorage.removeItem("score");
-  updateScore(0);
-  const tryAgain = confirm("Vous avez perdu !  recommencer ?");
-  tryAgain ? reset() : alert("A bientôt");
 }
 
 // MAJ record
@@ -74,7 +48,6 @@ export function updateTestLeft(testLeftText, testMax) {
 }
 
 // nouveau mot
-
 export function newWordToPlay() {
   chosenWord = initialWords[numberWord(initialWords.length)].toUpperCase();
   return chosenWord;

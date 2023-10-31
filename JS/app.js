@@ -1,12 +1,12 @@
 import { initialWords } from "./modules/wordsList.js";
 import {
-  reset,
   newWordToPlay,
   updateRecord,
   updateScore,
   updateTestLeft,
-  youLose,
 } from "./modules/basisFunctions.js";
+
+import { reset, youLose } from "./modules/basisActions.js";
 
 const btnReset = document.querySelector(".reset");
 const btnPropose = document.querySelector(".propose");
@@ -20,11 +20,9 @@ let scoreText = sessionStorage.getItem("score")
   : 0;
 let recordText;
 let chosenLetter;
-
 let chosenWord = newWordToPlay();
-console.log(chosenWord);
+console.log(chosenWord);                 //à supprimer
 let wordInArray = chosenWord.split("");
-
 let arrayWord = wordInArray;
 
 // gestion record
@@ -38,18 +36,8 @@ function showRecord() {
   recordShow.textContent = recordText;
 }
 
-// controle lettre
-
-function checkLetter(chosenLetter) {
-  const letterElement = document.querySelector(`#${chosenLetter}`);
-
-  if (
-    letterElement.classList.contains("right") ||
-    letterElement.classList.contains("wrong")
-  ) {
-    alert("Vous avez déjà joué cette lettre ");
-    return;
-  }
+//bonne lettre selectionnée
+function goodLetter(letterElement) {
   wordInArray.forEach((letter, index) => {
     if (chosenLetter === letter) {
       letters_word[index].textContent = letter;
@@ -65,6 +53,10 @@ function checkLetter(chosenLetter) {
       }
     }
   });
+}
+
+//  mauvaise lettre selectionnée
+function badLetter(letterElement) {
   if (!letterElement.classList.contains("right")) {
     letterElement.classList.add("wrong");
     testLeftText -= 1;
@@ -83,20 +75,20 @@ function checkLetter(chosenLetter) {
   }
 }
 
-// choix lettre sur écran
-letters.forEach((letter) => {
-  letter.addEventListener("click", () => {
-    chosenLetter = letter.outerText;
-    checkLetter(chosenLetter);
-  });
-});
-// choix lettre sur clavier
-document.addEventListener("keydown", (event) => {
-  if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
-    chosenLetter = event.key.toUpperCase();
-    checkLetter(chosenLetter);
+// controle lettre
+function checkLetter(chosenLetter) {
+  const letterElement = document.querySelector(`#${chosenLetter}`);
+  if (
+    letterElement.classList.contains("right") ||
+    letterElement.classList.contains("wrong")
+  ) {
+    alert("Vous avez déjà joué cette lettre ");
+    return;
   }
-});
+  goodLetter(letterElement);
+  badLetter(letterElement);
+}
+
 // selection d'un mot de la liste et affichage
 function showWord() {
   wordInArray.forEach((letter) => {
@@ -114,6 +106,7 @@ function testWin(scoreText, recordText) {
   youWin(scoreText);
 }
 
+// si victoire, gestion affichage ############################# remplacer alert par élément HTML !
 function youWin(scoreText) {
   let score = scoreText;
   sessionStorage.setItem("score", score);
@@ -123,6 +116,7 @@ function youWin(scoreText) {
   }, 150);
 }
 
+// action sur btn reset
 btnReset.addEventListener("click", () => {
   sessionStorage.removeItem("score");
   updateRecord(scoreText, recordText);
@@ -132,6 +126,7 @@ btnReset.addEventListener("click", () => {
   }, 1000);
 });
 
+// action sur btn proposition mot
 btnPropose.addEventListener("click", () => {
   let proposedWord = prompt("Vous pensez à quel mot ?");
   if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
@@ -143,6 +138,23 @@ btnPropose.addEventListener("click", () => {
 });
 
 
+// choix lettre sur écran
+letters.forEach((letter) => {
+  letter.addEventListener("click", () => {
+    chosenLetter = letter.outerText;
+    checkLetter(chosenLetter);
+  });
+});
+// choix lettre sur clavier
+document.addEventListener("keydown", (event) => {
+  if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
+    chosenLetter = event.key.toUpperCase();
+    checkLetter(chosenLetter);
+  }
+});
+
+
+// lancement initial du jeu
 updateScore(scoreText);
 updateTestLeft(testLeftText, testMax);
 showRecord();
