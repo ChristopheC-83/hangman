@@ -1,38 +1,42 @@
-.victory, .defeat {
+.victory,
+.defeat {
   @include posMid;
   min-width: 50vw;
+  max-width: 750px;
   min-height: 20vh;
+  max-height: 500px;
   @include flexMid;
   flex-direction: column;
   justify-content: space-evenly;
   gap: 20px;
   padding: 20px;
   border-radius: 10px;
-  color : $text_light1;
+  color: $text_light1;
   border: 3px solid $border_light2;
   background-color: $components_light2;
   z-index: 15;
   transition: all 1.8s;
-  
 }
 
-.defeat{
-    
+.defeat {
+  h4 {
+    width: 100%;
+    text-align-last: left;
+  }
 }
 
-.nextWord{
-
-    border-radius: 10px;
-    color : $text_light1;
-    border: 3px solid $border_light2;
-    background-color: $components_light2;
-    padding: 10px 20px;
-    margin: 20px;
-    cursor: pointer;
+.nextWord {
+  border-radius: 10px;
+  color: $text_light1;
+  border: 3px solid $border_light2;
+  background-color: $components_light2;
+  padding: 10px 20px;
+  margin: 20px;
+  cursor: pointer;
 }
 
-.modalAnimation{
-    animation: flash 2.5s linear;
+.modalAnimation {
+  animation: flash 2.5s linear;
 }
 @keyframes flash {
   10% {
