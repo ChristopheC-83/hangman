@@ -2,6 +2,7 @@ import { initialWords } from "./wordsList.js";
 
 const scoreShow = document.querySelector(".score");
 const tests_left = document.querySelector(".tests_left");
+const tests_max = document.querySelector(".tests_max");
 const flashNewRecord = document.querySelector(".newRecord p");
 let newWord;
 let oldWord;
@@ -11,7 +12,6 @@ export let chosenWord;
 
 function getRandomNumber(max) {
   return Math.floor(Math.random() * max);
-  
 }
 
 export function numberWord(max) {
@@ -43,8 +43,8 @@ export function resetKey(letters) {
 
 // you lose
 export function youLose() {
-  sessionStorage.removeItem('score')
-  updateScore(0)
+  sessionStorage.removeItem("score");
+  updateScore(0);
   const tryAgain = confirm("Vous avez perdu !  recommencer ?");
   tryAgain ? reset() : alert("A bientôt");
 }
@@ -68,8 +68,9 @@ export function updateScore(score) {
 }
 
 // MAJ nb coups restants
-export function updateTestLeft(testLeftText) {
+export function updateTestLeft(testLeftText, testMax) {
   tests_left.textContent = testLeftText;
+  tests_max.textContent = testMax;
 }
 
 // nouveau mot

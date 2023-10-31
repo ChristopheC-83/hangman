@@ -13,8 +13,8 @@ const btnPropose = document.querySelector(".propose");
 const letters = document.querySelectorAll(".letter");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
-let oldScore;
-let testLeftText = 7;
+let testMax = 7;
+let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
   ? parseInt(sessionStorage.getItem("score"))
   : 0;
@@ -68,7 +68,7 @@ function checkLetter(chosenLetter) {
   if (!letterElement.classList.contains("right")) {
     letterElement.classList.add("wrong");
     testLeftText -= 1;
-    updateTestLeft(testLeftText);
+    updateTestLeft(testLeftText, testMax);
 
     if (testLeftText === 0) {
       updateRecord(scoreText, recordText);
@@ -138,8 +138,9 @@ btnPropose.addEventListener("click", () => {
   }
 });
 
+
 updateScore(scoreText);
-updateTestLeft(testLeftText);
+updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
 
