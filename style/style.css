@@ -487,6 +487,64 @@ p {
   box-shadow: none;
 }
 
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  padding: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(131, 131, 131, 0.5647058824);
+  z-index: 10;
+}
+
+.victory {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  border: 3px solid #BBBBBB;
+  background-color: #E0E0E0;
+  z-index: 15;
+  transition: all 1.8s;
+}
+
+.modalAnimation {
+  animation: flash 2.5s linear;
+}
+
+@keyframes flash {
+  10% {
+    box-shadow: 0px 0px 20px white;
+  }
+  25% {
+    box-shadow: 0px 0px 30px 10px white;
+  }
+  40% {
+    box-shadow: 0px 0px 40px 15px white;
+  }
+  50% {
+    box-shadow: 0px 0px 50px 20px white;
+  }
+  60% {
+    box-shadow: 0px 0px 40px 15px white;
+  }
+  75% {
+    box-shadow: 0px 0px 30px 10px white;
+  }
+  100% {
+    box-shadow: 0px 0px 20px white;
+  }
+}
 body.dark {
   transition: all 0.3s;
   color: #B4B4B4;
@@ -554,6 +612,9 @@ body.dark .btnAction:hover {
 }
 body.dark .imgHangman {
   filter: drop-shadow(2px 2px 8px #F9F9F9);
+}
+body.dark .overlay {
+  background-color: rgba(123, 123, 123, 0.5647058824);
 }
 
 body {

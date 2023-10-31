@@ -14,6 +14,8 @@ const letters = document.querySelectorAll(".letter");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
 const imgHangman = document.querySelectorAll(".imgHangman");
+const overlay=document.querySelector('.overlay')
+const victory=document.querySelector('.victory')
 let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
@@ -23,8 +25,9 @@ let recordText;
 let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
-let arrayWord = wordInArray; // me permettra de selctionner une lettre à acheter
-console.log(imgHangman);
+let arrayWord = wordInArray; //  me permettra de selctionner une lettre à acheter
+
+
 // gestion record
 function showRecord() {
   if (!localStorage.getItem("record")) {
@@ -125,14 +128,16 @@ function testWin(scoreText, recordText) {
   youWin(scoreText);
 }
 
-// si victoire, gestion affichage ############################# remplacer alert par élément HTML !
+// si victoire, gestion affichage
 function youWin(scoreText) {
   let score = scoreText;
   sessionStorage.setItem("score", score);
+  victory.classList.remove('dnone')
+  victory.classList.add('modalAnimation')
+  overlay.classList.remove('dnone')
   setTimeout(() => {
-    alert("c'est gagné !");
     reset();
-  }, 150);
+  }, 2500);
 }
 
 // action sur btn reset
@@ -176,5 +181,5 @@ updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
 
-console.log("arrayWord : " + arrayWord);
+console.log("arrayWord : " + arrayWord);  //#################### à effacer à terme
 const letters_word = document.querySelectorAll(".letter_word");
