@@ -17,7 +17,6 @@ function getRandomNumber(max) {
 export function numberWord(max) {
   do {
     newWord = getRandomNumber(max);
-    console.log(newWord);
   } while (newWord === oldWord);
   oldWord = newWord;
   return newWord;
@@ -50,5 +49,6 @@ export function updateTestLeft(testLeftText, testMax) {
 // nouveau mot
 export function newWordToPlay() {
   chosenWord = initialWords[numberWord(initialWords.length)].toUpperCase();
+  sessionStorage.setItem('motADeviner', chosenWord)
   return chosenWord;
 }

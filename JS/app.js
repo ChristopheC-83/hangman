@@ -21,9 +21,8 @@ let scoreText = sessionStorage.getItem("score")
 let recordText;
 let chosenLetter;
 let chosenWord = newWordToPlay();
-console.log(chosenWord);                 //à supprimer
 let wordInArray = chosenWord.split("");
-let arrayWord = wordInArray;
+let arrayWord = wordInArray; // me permettra de selctionner une lettre à acheter
 
 // gestion record
 function showRecord() {
@@ -34,6 +33,23 @@ function showRecord() {
     recordText = localStorage.getItem("record");
   }
   recordShow.textContent = recordText;
+}
+
+// perte 1 point mauvaise lettre ou proposition
+function oneLostPoint() {
+  testLeftText -= 1;
+  updateTestLeft(testLeftText, testMax);
+
+  if (testLeftText === 0) {
+    updateRecord(scoreText, recordText);
+    showRecord();
+    setTimeout(() => {
+      youLose();
+      sessionStorage.removeItem("score");
+      scoreText = 0;
+      updateScore(0);
+    }, 150);
+  }
 }
 
 //bonne lettre selectionnée
@@ -52,6 +68,7 @@ function goodLetter(letterElement) {
         }, 150);
       }
     }
+    console.log("arrayWord : " + arrayWord);
   });
 }
 
@@ -59,19 +76,8 @@ function goodLetter(letterElement) {
 function badLetter(letterElement) {
   if (!letterElement.classList.contains("right")) {
     letterElement.classList.add("wrong");
-    testLeftText -= 1;
-    updateTestLeft(testLeftText, testMax);
 
-    if (testLeftText === 0) {
-      updateRecord(scoreText, recordText);
-      showRecord();
-      setTimeout(() => {
-        youLose();
-        sessionStorage.removeItem("score");
-        scoreText = 0;
-        updateScore(0);
-      }, 150);
-    }
+    oneLostPoint();
   }
 }
 
@@ -132,11 +138,9 @@ btnPropose.addEventListener("click", () => {
   if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
     testWin(wordInArray.length, recordText);
   } else {
-    alert("Try again !");
-    sessionStorage.removeItem("score");
+    oneLostPoint();
   }
 });
-
 
 // choix lettre sur écran
 letters.forEach((letter) => {
@@ -153,11 +157,11 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-
 // lancement initial du jeu
 updateScore(scoreText);
 updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
 
+console.log("arrayWord : " + arrayWord);
 const letters_word = document.querySelectorAll(".letter_word");
