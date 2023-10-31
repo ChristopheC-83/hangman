@@ -1,9 +1,7 @@
 import { initialWords } from "./modules/wordsList.js";
 import {
-  numberWord,
   reset,
   newWordToPlay,
-  resetKey,
   updateRecord,
   updateScore,
   updateTestLeft,
@@ -77,9 +75,9 @@ function checkLetter(chosenLetter) {
       showRecord();
       setTimeout(() => {
         youLose();
-        sessionStorage.removeItem('score')
-        scoreText=0
-        updateScore(0)
+        sessionStorage.removeItem("score");
+        scoreText = 0;
+        updateScore(0);
       }, 150);
     }
   }
@@ -110,7 +108,7 @@ function showWord() {
 }
 
 // si victoire
-function testWin(scoreText, wordInArray, recordText) {
+function testWin(scoreText, recordText) {
   updateRecord(scoreText, recordText);
   showRecord();
   youWin(scoreText);
@@ -124,6 +122,21 @@ function youWin(scoreText) {
     reset();
   }, 150);
 }
+
+btnReset.addEventListener("click", () => {
+  reset();
+  sessionStorage.removeItem("score");
+});
+
+btnPropose.addEventListener("click", () => {
+  let proposedWord = prompt("Vous pensez à quel mot ?");
+  if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
+    testWin(wordInArray.length, recordText);
+  } else {
+    alert("Try again !");
+    sessionStorage.removeItem("score");
+  }
+});
 
 updateScore(scoreText);
 updateTestLeft(testLeftText);
