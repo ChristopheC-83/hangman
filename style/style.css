@@ -528,12 +528,6 @@ p {
   transition: all 1.8s;
 }
 
-.defeat h4 {
-  width: 100%;
-  -moz-text-align-last: left;
-       text-align-last: left;
-}
-
 .nextWord {
   border-radius: 10px;
   color: #646464;
