@@ -14,8 +14,9 @@ const letters = document.querySelectorAll(".letter");
 const recordShow = document.querySelector(".record");
 const word = document.querySelector(".word");
 const imgHangman = document.querySelectorAll(".imgHangman");
-const overlay=document.querySelector('.overlay')
-const victory=document.querySelector('.victory')
+const overlay = document.querySelector(".overlay");
+const victory = document.querySelector(".victory");
+const nextWord = document.querySelector(".nextWord");
 let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
@@ -26,7 +27,6 @@ let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
 let arrayWord = wordInArray; //  me permettra de selctionner une lettre à acheter
-
 
 // gestion record
 function showRecord() {
@@ -43,11 +43,11 @@ function drawingHangman(testLeftText) {
   let numberImg = 0;
   numberImg = testMax - testLeftText;
   console.log(numberImg);
-  imgHangman[numberImg].classList.remove('dnone')
-  if(numberImg===7){
-    imgHangman[4].classList.add('dnone')
-    imgHangman[5].classList.add('dnone')
-    imgHangman[6].classList.add('dnone')
+  imgHangman[numberImg].classList.remove("dnone");
+  if (numberImg === 7) {
+    imgHangman[4].classList.add("dnone");
+    imgHangman[5].classList.add("dnone");
+    imgHangman[6].classList.add("dnone");
   }
 }
 
@@ -132,12 +132,25 @@ function testWin(scoreText, recordText) {
 function youWin(scoreText) {
   let score = scoreText;
   sessionStorage.setItem("score", score);
-  victory.classList.remove('dnone')
-  victory.classList.add('modalAnimation')
-  overlay.classList.remove('dnone')
-  setTimeout(() => {
+  victory.classList.remove("dnone");
+  victory.classList.add("modalAnimation");
+  overlay.classList.remove("dnone");
+  // setTimeout(() => {
+  //   reset();
+  // }, 2500);
+}
+if (nextWord) {
+  nextWord.addEventListener("click", () => {
     reset();
-  }, 2500);
+  });
+}
+
+if(nextWord){
+  document.addEventListener("keyup", (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      reset();
+    }
+  });
 }
 
 // action sur btn reset
@@ -181,5 +194,5 @@ updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
 
-console.log("arrayWord : " + arrayWord);  //#################### à effacer à terme
+console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
 const letters_word = document.querySelectorAll(".letter_word");

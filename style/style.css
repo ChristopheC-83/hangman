@@ -504,18 +504,31 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 20vh;
+  min-width: 50vw;
+  min-height: 20vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px;
   border-radius: 10px;
+  color: #646464;
   border: 3px solid #BBBBBB;
   background-color: #E0E0E0;
   z-index: 15;
   transition: all 1.8s;
+}
+
+.nextWord {
+  border-radius: 10px;
+  color: #646464;
+  border: 3px solid #BBBBBB;
+  background-color: #E0E0E0;
+  padding: 10px 20px;
+  margin: 20px;
+  cursor: pointer;
 }
 
 .modalAnimation {
@@ -615,6 +628,11 @@ body.dark .imgHangman {
 }
 body.dark .overlay {
   background-color: rgba(123, 123, 123, 0.5647058824);
+}
+body.dark .victory {
+  color: #B4B4B4;
+  border: 3px solid #606060;
+  background-color: #313131;
 }
 
 body {

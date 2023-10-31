@@ -1,16 +1,30 @@
 .victory {
   @include posMid;
-  width: 50vw;
-  height: 20vh;
+  min-width: 50vw;
+  min-height: 20vh;
   @include flexMid;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px;
   border-radius: 10px;
+  color : $text_light1;
   border: 3px solid $border_light2;
   background-color: $components_light2;
   z-index: 15;
   transition: all 1.8s;
   
+}
+
+.nextWord{
+
+    border-radius: 10px;
+    color : $text_light1;
+    border: 3px solid $border_light2;
+    background-color: $components_light2;
+    padding: 10px 20px;
+    margin: 20px;
+    cursor: pointer;
 }
 
 .modalAnimation{

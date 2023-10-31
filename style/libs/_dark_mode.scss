@@ -78,4 +78,10 @@ body.dark {
   
     background-color: #7B7B7B90;
   }
+  .victory{
+  
+    color : $text_dark1;
+    border: 3px solid $border_dark2;
+    background-color: $components_dark2;
+  }
 }
