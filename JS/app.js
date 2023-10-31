@@ -59,24 +59,30 @@ function youLose() {
   sessionStorage.removeItem("score");
   updateScore(0);
   unknowWord.textContent = sessionStorage.getItem("motADeviner")
+  document.querySelector('.letters').classList.add('dnone')
   defeat.classList.remove("dnone");
   defeat.classList.add("modalAnimation");
   overlay2.classList.remove("dnone");
 }
 
-if (defeat) {
-  nextWord[1].addEventListener("click", () => {
-    reset();
-  });
-}
-if(defeat){
-  document.addEventListener("keyup", (event) => {
-    if (event.key === "Enter" || event.keyCode === 13) {
+// gestion modale clavier ou souris
+function modalsGestion(event){
+  if (event) {
+    nextWord[
+      event==='defeat'?1:0
+    ].addEventListener("click", () => {
       reset();
-    }
-  });
-}
+    });
+  }
+  if(event){
+    document.addEventListener("keyup", (event) => {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        reset();
+      }
+    });
+  }
 
+}
 
 // perte 1 point mauvaise lettre ou proposition
 function oneLostPoint() {
@@ -164,19 +170,6 @@ function youWin(scoreText) {
   overlay.classList.remove("dnone");
 }
 
-if (victory) {
-  nextWord[0].addEventListener("click", () => {
-    reset();
-  });
-}
-if(victory){
-  document.addEventListener("keyup", (event) => {
-    if (event.key === "Enter" || event.keyCode === 13) {
-      reset();
-    }
-  });
-}
-
 // action sur btn reset
 btnReset.addEventListener("click", () => {
   sessionStorage.removeItem("score");
@@ -217,6 +210,8 @@ updateScore(scoreText);
 updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
+modalsGestion(defeat)
+modalsGestion(victory)
 
 console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
 const letters_word = document.querySelectorAll(".letter_word");
