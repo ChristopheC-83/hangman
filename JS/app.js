@@ -1,24 +1,18 @@
 import { initialWords } from "./modules/wordsList.js";
-import {
-  newWordToPlay,
-  updateRecord,
-  updateScore,
-  updateTestLeft,
-} from "./modules/basisFunctions.js";
+import { newWordToPlay, updateTestLeft,  } from "./modules/basisFunctions.js";
 
-import { reset } from "./modules/basisActions.js";
+import { updateRecord,showRecord, updateScore } from "./modules/scoreFunctions.js";
+
+import { reset, drawingHangman } from "./modules/basisActions.js";
 
 const btnPropose = document.querySelector(".propose");
 const btnReset = document.querySelector(".reset");
 const btnSuggestedWord = document.querySelector("#btnSuggestedWord");
 const defeat = document.querySelector(".defeat");
 const formSuggestedWord = document.querySelector("#formSuggestedWord");
-const imgHangman = document.querySelectorAll(".imgHangman");
 const letters = document.querySelectorAll(".letter");
-const recordShow = document.querySelector(".record");
 const nextWord = document.querySelectorAll(".nextWord");
 const overlay = document.querySelector(".overlay");
-const overlay2 = document.querySelector(".overlay2");
 const suggestWord = document.querySelector(".suggestWord");
 const suggestedWord = document.querySelector("#suggestedWord");
 const unknowWord = document.querySelector(".unknowWord");
@@ -36,28 +30,8 @@ let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
 let arrayWord = wordInArray; //  me permettra de selctionner une lettre à acheter
 console.log(nextWord);
-// gestion record
-function showRecord() {
-  if (!localStorage.getItem("record")) {
-    localStorage.setItem("record", 0);
-    recordText = 0;
-  } else {
-    recordText = localStorage.getItem("record");
-  }
-  recordShow.textContent = recordText;
-}
-// dessin du pendu
-function drawingHangman(testLeftText) {
-  let numberImg = 0;
-  numberImg = testMax - testLeftText;
-  console.log(numberImg);
-  imgHangman[numberImg].classList.remove("dnone");
-  if (numberImg === 7) {
-    imgHangman[4].classList.add("dnone");
-    imgHangman[5].classList.add("dnone");
-    imgHangman[6].classList.add("dnone");
-  }
-}
+
+
 // Créez une fonction pour activer l'écoute des événements clavier
 function activateKeyboard() {
   document.addEventListener("keydown", keydownHandler);
@@ -97,7 +71,7 @@ function modalsGestion() {
 function oneLostPoint() {
   testLeftText -= 1;
   updateTestLeft(testLeftText, testMax);
-  drawingHangman(testLeftText);
+  drawingHangman(testLeftText, testMax);
 
   if (testLeftText === 0) {
     updateRecord(scoreText, recordText);

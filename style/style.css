@@ -487,7 +487,7 @@ p {
   box-shadow: none;
 }
 
-.overlay, .overlay2 {
+.overlay {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -497,10 +497,6 @@ p {
   right: 0;
   background-color: rgba(131, 131, 131, 0.5647058824);
   z-index: 10;
-}
-
-.overlay2 {
-  background-color: rgba(131, 131, 131, 0.4588235294);
 }
 
 .victory,
