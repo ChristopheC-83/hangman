@@ -8,19 +8,23 @@ import {
 
 import { reset } from "./modules/basisActions.js";
 
-const btnReset = document.querySelector(".reset");
 const btnPropose = document.querySelector(".propose");
+const btnReset = document.querySelector(".reset");
+const btnSuggestedWord = document.querySelector("#btnSuggestedWord");
+const defeat = document.querySelector(".defeat");
+const formSuggestedWord = document.querySelector("#formSuggestedWord");
+const imgHangman = document.querySelectorAll(".imgHangman");
 const letters = document.querySelectorAll(".letter");
 const recordShow = document.querySelector(".record");
-const word = document.querySelector(".word");
-const imgHangman = document.querySelectorAll(".imgHangman");
+const nextWord = document.querySelectorAll(".nextWord");
 const overlay = document.querySelector(".overlay");
 const overlay2 = document.querySelector(".overlay2");
-const victory = document.querySelector(".victory");
-const defeat = document.querySelector(".defeat");
+const suggestWord = document.querySelector(".suggestWord");
+const suggestedWord = document.querySelector("#suggestedWord");
 const unknowWord = document.querySelector(".unknowWord");
-const nextWord = document.querySelectorAll(".nextWord");
-let keyboard = 0;
+const victory = document.querySelector(".victory");
+const word = document.querySelector(".word");
+let isFormSubmitted = false;
 let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
@@ -81,6 +85,7 @@ function youLose() {
   defeat.classList.remove("dnone");
   defeat.classList.add("modalAnimation");
   overlay2.classList.remove("dnone");
+  modalsGestion()
 }
 
 // gestion modale clavier ou souris
@@ -180,12 +185,13 @@ function testWin(scoreText, recordText) {
 
 // si victoire, gestion affichage
 function youWin(scoreText) {
-  deactivateKeyboard()
+  deactivateKeyboard();
   let score = scoreText;
   sessionStorage.setItem("score", score);
   victory.classList.remove("dnone");
   victory.classList.add("modalAnimation");
   overlay.classList.remove("dnone");
+  modalsGestion()
 }
 
 // action sur btn reset
@@ -200,13 +206,32 @@ btnReset.addEventListener("click", () => {
 
 // action sur btn proposition mot
 btnPropose.addEventListener("click", () => {
-  let proposedWord = prompt("Vous pensez à quel mot ?");
-  if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
-    testWin(wordInArray.length, recordText);
-  } else {
-    oneLostPoint();
-  }
+  suggestWord.classList.remove("dnone");
+  deactivateKeyboard();
+  suggestedWord.focus();
+  submitSuggestedWord();
 });
+// fonction soumission formulaire
+function submitSuggestedWord() {
+  if (isFormSubmitted) {      //empeche le cumul des appels à la fonction
+    return;
+  } else {
+    formSuggestedWord.addEventListener("submit", (event) => {
+      event.preventDefault();
+      isFormSubmitted = true;
+      let proposedWord = suggestedWord.value;
+      if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
+        testWin(wordInArray.length, recordText);
+      } else {
+        alert("non, ce n'est pas le mot " + proposedWord + " !");
+        oneLostPoint();
+      }
+      suggestedWord.value = "";
+      suggestWord.classList.add("dnone");
+      activateKeyboard();
+    });
+  }
+}
 
 // choix lettre sur écran
 letters.forEach((letter) => {
@@ -217,10 +242,13 @@ letters.forEach((letter) => {
 });
 
 // lancement initial du jeu
+function startGame(){
 updateScore(scoreText);
 updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
-modalsGestion()
-console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
+console.log("arrayWord : " + arrayWord);  //#################### à effacer à terme
+} 
+
+startGame()
 const letters_word = document.querySelectorAll(".letter_word");

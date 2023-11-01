@@ -504,7 +504,8 @@ p {
 }
 
 .victory,
-.defeat {
+.defeat,
+.suggestWord {
   position: absolute;
   top: 50%;
   left: 50%;
