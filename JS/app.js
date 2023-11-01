@@ -31,7 +31,7 @@ let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
 let arrayWord = wordInArray; //  me permettra de selctionner une lettre à acheter
-
+console.log(nextWord);
 // gestion record
 function showRecord() {
   if (!localStorage.getItem("record")) {
@@ -78,20 +78,20 @@ function youLose() {
   sessionStorage.removeItem("score");
   updateScore(0);
   unknowWord.textContent = sessionStorage.getItem("motADeviner");
-  document.querySelector(".letters").classList.add("dnone");
   defeat.classList.remove("dnone");
   defeat.classList.add("modalAnimation");
   overlay2.classList.remove("dnone");
 }
 
 // gestion modale clavier ou souris
-function modalsGestion(event) {
-  if (event) {
-    nextWord[event === "defeat" ? 1 : 0].addEventListener("click", () => {
-      reset();
+function modalsGestion() {
+  if (nextWord) {
+    nextWord.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        reset();
+      });
     });
-  }
-  if (event) {
+
     document.addEventListener("keyup", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
         reset();
@@ -220,8 +220,6 @@ updateScore(scoreText);
 updateTestLeft(testLeftText, testMax);
 showRecord();
 showWord();
-modalsGestion(defeat);
-modalsGestion(victory);
-
+modalsGestion()
 console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
 const letters_word = document.querySelectorAll(".letter_word");
