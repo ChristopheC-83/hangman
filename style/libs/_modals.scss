@@ -1,7 +1,7 @@
 .victory,
 .defeat,
 .suggestWord,
-.badWord {
+.badWord, .sameLetter {
   @include posMid;
   min-width: 50vw;
   width: 750px;

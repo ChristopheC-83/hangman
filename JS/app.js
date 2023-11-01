@@ -18,6 +18,7 @@ const formSuggestedWord = document.querySelector("#formSuggestedWord");
 const letters = document.querySelectorAll(".letter");
 const nextWord = document.querySelectorAll(".nextWord");
 const overlay = document.querySelector(".overlay");
+const sameLetter = document.querySelector(".sameLetter");
 const suggestWord = document.querySelector(".suggestWord");
 const suggestedWord = document.querySelector("#suggestedWord");
 const unknowWord = document.querySelector(".unknowWord");
@@ -125,7 +126,10 @@ function checkLetter(chosenLetter) {
     letterElement.classList.contains("right") ||
     letterElement.classList.contains("wrong")
   ) {
-    alert("Vous avez déjà joué cette lettre ");
+    sameLetter.classList.remove("dnone");
+        setTimeout(() => {
+          modalsGestion();
+        }, 500);
     return;
   }
   goodLetter(letterElement);
