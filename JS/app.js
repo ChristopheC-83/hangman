@@ -74,7 +74,7 @@ const keydownHandler = (event) => {
 
 // you lose
 function youLose() {
-  deactivateKeyboard(0);
+  deactivateKeyboard();
   sessionStorage.removeItem("score");
   updateScore(0);
   unknowWord.textContent = sessionStorage.getItem("motADeviner");
@@ -180,6 +180,7 @@ function testWin(scoreText, recordText) {
 
 // si victoire, gestion affichage
 function youWin(scoreText) {
+  deactivateKeyboard()
   let score = scoreText;
   sessionStorage.setItem("score", score);
   victory.classList.remove("dnone");
