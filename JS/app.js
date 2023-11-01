@@ -8,8 +8,11 @@ import {
 } from "./modules/scoreFunctions.js";
 
 import { reset, drawingHangman } from "./modules/basisActions.js";
+import { buyVowel, buyConsonant } from "./modules/btnBuy.js";
 
 const badWord = document.querySelector(".badWord");
+const btnBuyVowel = document.querySelector("#buy_vowel");
+const btnBuyConsonant = document.querySelector("#buy_consonant");
 const btnPropose = document.querySelector(".propose");
 const btnReset = document.querySelector(".reset");
 const cancel = document.querySelector(".cancel");
@@ -127,9 +130,9 @@ function checkLetter(chosenLetter) {
     letterElement.classList.contains("wrong")
   ) {
     sameLetter.classList.remove("dnone");
-        setTimeout(() => {
-          modalsGestion();
-        }, 500);
+    setTimeout(() => {
+      modalsGestion();
+    }, 500);
     return;
   }
   goodLetter(letterElement);
@@ -173,6 +176,14 @@ btnReset.addEventListener("click", () => {
   }, 1000);
 });
 
+// achats joker
+btnBuyVowel.addEventListener("click", () => {
+  buyVowel(arrayWord);
+});
+btnBuyConsonant.addEventListener("click", () => {
+  buyConsonant(arrayWord);
+});
+
 // action sur btn proposition mot
 btnPropose.addEventListener("click", () => {
   overlay.classList.remove("dnone");
@@ -184,6 +195,7 @@ btnPropose.addEventListener("click", () => {
 
 // fonction soumission formulaire
 function submitSuggestedWord() {
+  closeSuggestedWord();
   if (isFormSubmitted) {
     //empeche le cumul des appels à la fonction
     return;
@@ -207,13 +219,15 @@ function submitSuggestedWord() {
     });
   }
 }
-
-cancel.addEventListener("click", () => {
-  console.log("coucou cancel");
-  overlay.classList.add("dnone");
-  suggestWord.classList.add("dnone");
-  activateKeyboard();
-});
+// fermer la fenetre de suggestion
+function closeSuggestedWord() {
+  cancel.addEventListener("click", () => {
+    console.log("coucou cancel");
+    overlay.classList.add("dnone");
+    suggestWord.classList.add("dnone");
+    activateKeyboard();
+  });
+}
 
 // choix lettre sur écran
 letters.forEach((letter) => {
