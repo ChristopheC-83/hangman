@@ -501,15 +501,15 @@ p {
 
 .victory,
 .defeat,
-.suggestWord {
+.suggestWord,
+.badWord {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 50vw;
-  max-width: 750px;
-  min-height: 20vh;
-  max-height: 500px;
+  width: 750px;
+  height: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -523,6 +523,39 @@ p {
   background-color: #E0E0E0;
   z-index: 15;
   transition: all 1.8s;
+}
+
+#formSuggestedWord {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+}
+#formSuggestedWord #label {
+  font-size: 20px;
+}
+#formSuggestedWord #suggestedWord {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+#formSuggestedWord #btnSuggestedWord,
+#formSuggestedWord .cancel {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #F9F9F9;
+  border: 1px solid #BBBBBB;
+  border-radius: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+#formSuggestedWord #btnSuggestedWord:hover,
+#formSuggestedWord .cancel:hover {
+  border: 3px solid #CECECE;
 }
 
 .nextWord {

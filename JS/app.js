@@ -1,13 +1,18 @@
 import { initialWords } from "./modules/wordsList.js";
-import { newWordToPlay, updateTestLeft,  } from "./modules/basisFunctions.js";
+import { newWordToPlay, updateTestLeft } from "./modules/basisFunctions.js";
 
-import { updateRecord,showRecord, updateScore } from "./modules/scoreFunctions.js";
+import {
+  updateRecord,
+  showRecord,
+  updateScore,
+} from "./modules/scoreFunctions.js";
 
 import { reset, drawingHangman } from "./modules/basisActions.js";
 
+const badWord = document.querySelector(".badWord");
 const btnPropose = document.querySelector(".propose");
 const btnReset = document.querySelector(".reset");
-const btnSuggestedWord = document.querySelector("#btnSuggestedWord");
+const cancel = document.querySelector(".cancel");
 const defeat = document.querySelector(".defeat");
 const formSuggestedWord = document.querySelector("#formSuggestedWord");
 const letters = document.querySelectorAll(".letter");
@@ -30,7 +35,6 @@ let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
 let arrayWord = wordInArray; //  me permettra de selctionner une lettre à acheter
 console.log(nextWord);
-
 
 // Créez une fonction pour activer l'écoute des événements clavier
 function activateKeyboard() {
@@ -167,11 +171,13 @@ btnReset.addEventListener("click", () => {
 
 // action sur btn proposition mot
 btnPropose.addEventListener("click", () => {
+  overlay.classList.remove("dnone");
   suggestWord.classList.remove("dnone");
   deactivateKeyboard();
   suggestedWord.focus();
   submitSuggestedWord();
 });
+
 // fonction soumission formulaire
 function submitSuggestedWord() {
   if (isFormSubmitted) {
@@ -185,7 +191,10 @@ function submitSuggestedWord() {
       if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
         testWin(wordInArray.length, recordText);
       } else {
-        alert("non, ce n'est pas le mot " + proposedWord + " !");
+        badWord.classList.remove("dnone");
+        setTimeout(() => {
+          modalsGestion();
+        }, 500);
         oneLostPoint();
       }
       suggestedWord.value = "";
@@ -194,6 +203,13 @@ function submitSuggestedWord() {
     });
   }
 }
+
+cancel.addEventListener("click", () => {
+  console.log("coucou cancel");
+  overlay.classList.add("dnone");
+  suggestWord.classList.add("dnone");
+  activateKeyboard();
+});
 
 // choix lettre sur écran
 letters.forEach((letter) => {

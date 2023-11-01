@@ -1,11 +1,11 @@
 .victory,
-.defeat, 
-.suggestWord {
+.defeat,
+.suggestWord,
+.badWord {
   @include posMid;
   min-width: 50vw;
-  max-width: 750px;
-  min-height: 20vh;
-  max-height: 500px;
+  width: 750px;
+  height: 350px;
   @include flexMid;
   flex-direction: column;
   justify-content: space-evenly;
@@ -19,7 +19,40 @@
   transition: all 1.8s;
 }
 
+#formSuggestedWord {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
 
+  #label {
+    font-size: 20px;
+  }
+  #suggestedWord {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  #btnSuggestedWord,
+  .cancel {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: $bgc_light;
+    border: 1px solid $border_light2;
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  #btnSuggestedWord:hover,
+  .cancel:hover {
+    border: 3px solid $border_light1;
+  }
+}
 
 .nextWord {
   border-radius: 10px;
