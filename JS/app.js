@@ -76,18 +76,6 @@ const keydownHandler = (event) => {
   }
 };
 
-// you lose
-function youLose() {
-  deactivateKeyboard();
-  sessionStorage.removeItem("score");
-  updateScore(0);
-  unknowWord.textContent = sessionStorage.getItem("motADeviner");
-  defeat.classList.remove("dnone");
-  defeat.classList.add("modalAnimation");
-  overlay2.classList.remove("dnone");
-  modalsGestion()
-}
-
 // gestion modale clavier ou souris
 function modalsGestion() {
   if (nextWord) {
@@ -115,7 +103,8 @@ function oneLostPoint() {
     updateRecord(scoreText, recordText);
     showRecord();
     setTimeout(() => {
-      youLose();
+      endParty(0, defeat);
+      unknowWord.textContent = sessionStorage.getItem("motADeviner");
       sessionStorage.removeItem("score");
       scoreText = 0;
       updateScore(0);
@@ -180,18 +169,16 @@ function showWord() {
 function testWin(scoreText, recordText) {
   updateRecord(scoreText, recordText);
   showRecord();
-  youWin(scoreText);
+  endParty(scoreText, victory);
 }
 
-// si victoire, gestion affichage
-function youWin(scoreText) {
+function endParty(scoreText, end) {
   deactivateKeyboard();
-  let score = scoreText;
-  sessionStorage.setItem("score", score);
-  victory.classList.remove("dnone");
-  victory.classList.add("modalAnimation");
+  sessionStorage.setItem("score", scoreText);
+  end.classList.remove("dnone");
+  end.classList.add("modalAnimation");
   overlay.classList.remove("dnone");
-  modalsGestion()
+  modalsGestion();
 }
 
 // action sur btn reset
@@ -213,7 +200,8 @@ btnPropose.addEventListener("click", () => {
 });
 // fonction soumission formulaire
 function submitSuggestedWord() {
-  if (isFormSubmitted) {      //empeche le cumul des appels à la fonction
+  if (isFormSubmitted) {
+    //empeche le cumul des appels à la fonction
     return;
   } else {
     formSuggestedWord.addEventListener("submit", (event) => {
@@ -242,13 +230,13 @@ letters.forEach((letter) => {
 });
 
 // lancement initial du jeu
-function startGame(){
-updateScore(scoreText);
-updateTestLeft(testLeftText, testMax);
-showRecord();
-showWord();
-console.log("arrayWord : " + arrayWord);  //#################### à effacer à terme
-} 
+function startGame() {
+  updateScore(scoreText);
+  updateTestLeft(testLeftText, testMax);
+  showRecord();
+  showWord();
+  console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
+}
 
-startGame()
+startGame();
 const letters_word = document.querySelectorAll(".letter_word");
