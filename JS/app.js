@@ -28,6 +28,7 @@ const suggestedWord = document.querySelector("#suggestedWord");
 const unknowWord = document.querySelector(".unknowWord");
 const victory = document.querySelector(".victory");
 const word = document.querySelector(".word");
+let activeKeyboard = true;
 let isFormSubmitted = false;
 let testMax = 7;
 let testLeftText = testMax;
@@ -52,9 +53,17 @@ function deactivateKeyboard() {
 
 // Ajoutez un gestionnaire d'événements pour les événements clavier
 const keydownHandler = (event) => {
+  if (!activeKeyboard) {
+    return;
+  }
+  activateKeyboard = false;
+  setTimeout(() => {
+    activeKeyboard = true;
+  }, 200);
   if (event.key.length === 1 && event.key.match(/[a-zA-Z]/)) {
     chosenLetter = event.key.toUpperCase();
     checkLetter(chosenLetter);
+    activeKeyboard = false;
   }
 };
 
@@ -249,13 +258,11 @@ function submitSuggestedWord() {
 }
 // fermer la fenetre de suggestion
 function closeSuggestedWord() {
-  cancel.addEventListener('click',()=>{
+  cancel.addEventListener("click", () => {
     console.log("coucou cancel");
-    suggestWord.classList.add('dnone')
-    overlay.classList.add('dnone')
-  
-  }
-)
+    suggestWord.classList.add("dnone");
+    overlay.classList.add("dnone");
+  });
 }
 
 // choix lettre sur écran
