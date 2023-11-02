@@ -249,10 +249,10 @@ function submitSuggestedWord() {
           closeModal(badWord);
         }, 500);
         oneLostPoint();
+        activateKeyboard();
       }
       suggestedWord.value = "";
       suggestWord.classList.add("dnone");
-      activateKeyboard();
     });
   }
 }
