@@ -190,7 +190,9 @@ function endParty(scoreText, end) {
   end.classList.remove("dnone");
   end.classList.add("modalAnimation");
   overlay.classList.remove("dnone");
-  modalsGestion();
+  setTimeout(() => {
+    modalsGestion();
+  }, 250);
 }
 
 // action sur btn reset
@@ -222,7 +224,7 @@ btnPropose.addEventListener("click", () => {
 
 // fonction soumission formulaire
 function submitSuggestedWord() {
-  closeSuggestedWord();
+  // closeSuggestedWord();
   if (isFormSubmitted) {
     //empeche le cumul des appels à la fonction
     return;
