@@ -30,7 +30,7 @@ const victory = document.querySelector(".victory");
 const word = document.querySelector(".word");
 let activeKeyboard = true;
 let isFormSubmitted = false;
-let testMax = 7;
+let testMax = 1;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
   ? parseInt(sessionStorage.getItem("score"))
@@ -98,20 +98,24 @@ function closeModal(elt) {
   if (btnCloseModal) {
     btnCloseModal.forEach((btn) => {
       btn.addEventListener("click", () => {
-        addDnone(elt);
-        addDnone(overlay);
-        activeKeyboard = true;
-        activateKeyboard();
+        resetAfterCloseModal(elt)
       });
     });
     document.addEventListener("keyup", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
-        addDnone(elt);
-        addDnone(overlay);
-        activeKeyboard = true;
-        activateKeyboard();
+        resetAfterCloseModal(elt)
       }
     });
+  }
+}
+// action après fermeture modale par clavier ou souris
+function resetAfterCloseModal(elt){
+  addDnone(elt);
+  addDnone(overlay);
+  activeKeyboard = true;
+  activateKeyboard();
+  if(elt===badWord){
+    oneLostPoint()
   }
 }
 
@@ -263,7 +267,7 @@ function submitSuggestedWord() {
         setTimeout(() => {
           closeModal(badWord);
         }, 500);
-        oneLostPoint();
+        // oneLostPoint();
       }
       suggestedWord.value = "";
       suggestWord.classList.add("dnone");
@@ -271,6 +275,8 @@ function submitSuggestedWord() {
       return;
     });
   }
+  
+  isFormSubmitted = true;
 }
 // fermer la fenetre de suggestion
 function closeSuggestedWord() {

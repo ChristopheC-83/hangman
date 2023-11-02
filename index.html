@@ -19,41 +19,7 @@
     <title>HangMan Kikisan</title>
   </head>
   <body>
-    <!-- les modales -->
-    <div class="overlay dnone"></div>
-    <div class="victory dnone">
-      <h2>C'est gagné🤩</h2>
-      <h3>On passe au mot suivant !</h3>
-      <div class="nextWord"><h2>OK</h2></div>
-    </div>
-    <div class="defeat dnone">
-      <h2>C'est perdu😭</h2>
-      <h3>
-        Le mot à deviner était : <b><span class="unknowWord"></span></b>
-      </h3>
-      <h3>On réessaye ?</h3>
-      <div class="nextWord"><h2>OK</h2></div>
-      <h4>Aucune girafe n'a été maltraitée ou blessée pendant ce jeu.</h4>
-    </div>
-    <div class="suggestWord dnone">
-      <h2>A quel mot pensez-vous ?🤔</h2>
-      <form id="formSuggestedWord">
-        <label for="suggestedWord" id="label">Votre mot</label>
-        <input type="text" id="suggestedWord" autofocus autocomplete="off" />
-        <button id="btnSuggestedWord"><h4>Proposer</h4></button>
-        <div class="cancel"><h4>Annuler</h4></div>
-      </form>
-    </div>
-    <div class="badWord dnone">
-      <h2>Ce n'est pas le bon mot !</h2>
-      <h3>Tu perds 1 point mais essaye encore !</h3>
-      <div class="closeModal"><h2>OK</h2></div>
-    </div>
-    <div class="sameLetter dnone">
-      <h2>Vous avez déjà joué cette lettre !</h2>
-      <h3>Essayez en une autre !</h3>
-      <div class="closeModal"><h2>OK</h2></div>
-    </div>
+   
 
     <!-- le jeu -->
     <header>
@@ -83,6 +49,41 @@
           <img class="imgHangman imgHangman8 dnone" src="./images/step8.png" />
         </div>
         <div class="main_frame">
+           <!-- les modales -->
+    <div class="overlay dnone"></div>
+    <div class="victory dnone">
+      <h2>C'est gagné🤩</h2>
+      <h3>On passe au mot suivant !</h3>
+      <div class="nextWord"><h2>OK</h2></div>
+    </div>
+    <div class="defeat dnone">
+      <h2>C'est perdu😭</h2>
+      <h3>
+        Le mot à deviner était : <b><span class="unknowWord"></span></b>
+      </h3>
+      <h3>On réessaye ?</h3>
+      <div class="nextWord"><h2>OK</h2></div>
+      <h4>Aucune girafe n'a été maltraitée ou blessée pendant ce jeu.</h4>
+    </div>
+    <div class="suggestWord dnone">
+      <h2>A quel mot pensez-vous ?🤔</h2>
+      <form id="formSuggestedWord">
+        <label for="suggestedWord" id="label">Votre mot</label>
+        <input type="text" id="suggestedWord" autofocus autocomplete="off" />
+        <button id="btnSuggestedWord"><h4>Proposer</h4></button>
+        <div class="cancel"><h4>Annuler</h4></div>
+      </form>
+    </div>
+    <div class="badWord dnone">
+      <h2>Non, ce n'est pas le bon mot !</h2>
+      <h3>Tu perds 1 point !</h3>
+      <div class="closeModal"><h2>OK</h2></div>
+    </div>
+    <div class="sameLetter dnone">
+      <h2>Vous avez déjà joué cette lettre !</h2>
+      <h3>Essayez en une autre !</h3>
+      <div class="closeModal"><h2>OK</h2></div>
+    </div>
           <div class="info">
             <div class="tests">
               <h3>

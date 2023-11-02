@@ -4,8 +4,8 @@
 .badWord, .sameLetter {
   @include posMid;
   min-width: 50vw;
-  width: 750px;
-  height: 350px;
+  width: 100%;
+  height: fit-content;
   @include flexMid;
   flex-direction: column;
   justify-content: space-evenly;

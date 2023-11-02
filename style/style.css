@@ -245,6 +245,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  position: relative;
 }
 
 .tests {
@@ -518,8 +519,9 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 50vw;
-  width: 750px;
-  height: 350px;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
