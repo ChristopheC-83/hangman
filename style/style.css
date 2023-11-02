@@ -565,7 +565,11 @@ p {
 }
 #formSuggestedWord #btnSuggestedWord:hover,
 #formSuggestedWord .cancel:hover {
-  border: 3px solid #CECECE;
+  background-color: #191919;
+}
+#formSuggestedWord #btnSuggestedWord:hover h4,
+#formSuggestedWord .cancel:hover h4 {
+  color: #B4B4B4;
 }
 
 .nextWord, .closeModal {

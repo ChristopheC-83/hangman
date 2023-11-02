@@ -35,7 +35,9 @@ let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
   ? parseInt(sessionStorage.getItem("score"))
   : 0;
-let recordText;
+let recordText = localStorage.getItem("record")
+? parseInt(localStorage.getItem("record"))
+: 0;;
 let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
@@ -116,8 +118,12 @@ function oneLostPoint() {
   drawingHangman(testLeftText, testMax);
 
   if (testLeftText === 0) {
+    console.log("s : " + scoreText);
+    console.log("r : " + recordText);
     updateRecord(scoreText, recordText);
-    showRecord();
+    showRecord(localStorage.getItem("record"));
+    console.log("s : " + scoreText);
+    console.log("r : " + recordText);
     setTimeout(() => {
       endParty(0, defeat);
       unknowWord.textContent = sessionStorage.getItem("motADeviner");
@@ -187,7 +193,7 @@ function showWord() {
 // si victoire
 function testWin(scoreText, recordText) {
   updateRecord(scoreText, recordText);
-  showRecord();
+  showRecord(localStorage.getItem("record"));
   endParty(scoreText, victory);
 }
 
@@ -206,7 +212,7 @@ function endParty(scoreText, end) {
 btnReset.addEventListener("click", () => {
   sessionStorage.removeItem("score");
   updateRecord(scoreText, recordText);
-  showRecord();
+  showRecord(localStorage.getItem("record"));
   setTimeout(() => {
     reset();
   }, 1000);
@@ -241,7 +247,8 @@ function submitSuggestedWord() {
       isFormSubmitted = true;
       let proposedWord = suggestedWord.value;
       if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
-        testWin(wordInArray.length, recordText);
+        let newScore = parseInt(wordInArray.length) + parseInt(sessionStorage.getItem('score'))
+        testWin(newScore, recordText);
       } else {
         badWord.classList.remove("dnone");
         setTimeout(() => {
@@ -275,10 +282,13 @@ letters.forEach((letter) => {
 function startGame() {
   updateScore(scoreText);
   updateTestLeft(testLeftText, testMax);
-  showRecord();
+  showRecord(localStorage.getItem("record"));
   showWord();
   console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
 }
 
 startGame();
 const letters_word = document.querySelectorAll(".letter_word");
+
+console.log("s : " + scoreText);
+console.log("r : " + recordText);
