@@ -20,6 +20,7 @@ const defeat = document.querySelector(".defeat");
 const formSuggestedWord = document.querySelector("#formSuggestedWord");
 const letters = document.querySelectorAll(".letter");
 const nextWord = document.querySelectorAll(".nextWord");
+const btnCloseModal = document.querySelectorAll(".closeModal");
 const overlay = document.querySelector(".overlay");
 const sameLetter = document.querySelector(".sameLetter");
 const suggestWord = document.querySelector(".suggestWord");
@@ -70,6 +71,32 @@ function modalsGestion() {
     document.addEventListener("keyup", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
         reset();
+      }
+    });
+  }
+}
+
+// pour fermer une modale sans reset
+function addDnone(elt) {
+  if (elt) {
+    elt.classList.add("dnone");
+  }
+}
+
+// gestion modale clavier ou souris
+function closeModal(elt) {
+  if (btnCloseModal) {
+    btnCloseModal.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        console.log("closeModal ?");
+        addDnone(elt);
+        addDnone(overlay);
+      });
+    });
+    document.addEventListener("keyup", (event) => {
+      if (event.key === "Enter" || event.keyCode === 13) {
+        addDnone(elt);
+        addDnone(overlay);
       }
     });
   }
@@ -131,7 +158,7 @@ function checkLetter(chosenLetter) {
   ) {
     sameLetter.classList.remove("dnone");
     setTimeout(() => {
-      modalsGestion();
+      closeModal(sameLetter);
     }, 500);
     return;
   }
@@ -209,7 +236,7 @@ function submitSuggestedWord() {
       } else {
         badWord.classList.remove("dnone");
         setTimeout(() => {
-          modalsGestion();
+          closeModal(badWord);
         }, 500);
         oneLostPoint();
       }
