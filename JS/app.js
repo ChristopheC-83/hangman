@@ -100,16 +100,18 @@ function closeModal(elt) {
       btn.addEventListener("click", () => {
         addDnone(elt);
         addDnone(overlay);
+        activeKeyboard = true;
+        activateKeyboard();
       });
     });
     document.addEventListener("keyup", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
         addDnone(elt);
         addDnone(overlay);
+        activeKeyboard = true;
+        activateKeyboard();
       }
     });
-
-    activeKeyboard = true;
   }
 }
 
@@ -173,10 +175,8 @@ function checkLetter(chosenLetter) {
   ) {
     sameLetter.classList.remove("dnone");
     overlay.classList.remove("dnone");
+    activeKeyboard = false;
     deactivateKeyboard(),
-    setTimeout(()=>{
-      activateKeyboard()
-    }, 1500)
       setTimeout(() => {
         closeModal(sameLetter);
       }, 500);
