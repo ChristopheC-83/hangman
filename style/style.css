@@ -498,9 +498,9 @@ p {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   top: 0;
   padding: 0;
   left: 0;

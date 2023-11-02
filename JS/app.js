@@ -36,8 +36,8 @@ let scoreText = sessionStorage.getItem("score")
   ? parseInt(sessionStorage.getItem("score"))
   : 0;
 let recordText = localStorage.getItem("record")
-? parseInt(localStorage.getItem("record"))
-: 0;;
+  ? parseInt(localStorage.getItem("record"))
+  : 0;
 let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
@@ -58,7 +58,7 @@ const keydownHandler = (event) => {
   if (!activeKeyboard) {
     return;
   }
-  activateKeyboard = false;
+  activeKeyboard = false;
   setTimeout(() => {
     activeKeyboard = true;
   }, 200);
@@ -108,6 +108,8 @@ function closeModal(elt) {
         addDnone(overlay);
       }
     });
+
+    activeKeyboard = true;
   }
 }
 
@@ -170,13 +172,18 @@ function checkLetter(chosenLetter) {
     letterElement.classList.contains("wrong")
   ) {
     sameLetter.classList.remove("dnone");
-    setTimeout(() => {
-      closeModal(sameLetter);
-    }, 500);
-    return;
+    overlay.classList.remove("dnone");
+    deactivateKeyboard(),
+    setTimeout(()=>{
+      activateKeyboard()
+    }, 1500)
+      setTimeout(() => {
+        closeModal(sameLetter);
+      }, 500);
+  } else {
+    goodLetter(letterElement);
+    badLetter(letterElement);
   }
-  goodLetter(letterElement);
-  badLetter(letterElement);
 }
 
 // selection d'un mot de la liste et affichage
@@ -247,7 +254,9 @@ function submitSuggestedWord() {
       isFormSubmitted = true;
       let proposedWord = suggestedWord.value;
       if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
-        let newScore = parseInt(wordInArray.length) + parseInt(sessionStorage.getItem('score'))
+        let newScore =
+          parseInt(wordInArray.length) +
+          parseInt(sessionStorage.getItem("score"));
         testWin(newScore, recordText);
       } else {
         badWord.classList.remove("dnone");
@@ -259,6 +268,7 @@ function submitSuggestedWord() {
       suggestedWord.value = "";
       suggestWord.classList.add("dnone");
       activateKeyboard();
+      return;
     });
   }
 }
