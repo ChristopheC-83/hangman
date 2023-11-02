@@ -38,8 +38,7 @@ let recordText;
 let chosenLetter;
 let chosenWord = newWordToPlay();
 let wordInArray = chosenWord.split("");
-let arrayWord = wordInArray; //  me permettra de selctionner une lettre à acheter
-console.log(nextWord);
+let arrayWord = wordInArray; //  me permettra de selectionner une lettre à acheter
 
 // Créez une fonction pour activer l'écoute des événements clavier
 function activateKeyboard() {
