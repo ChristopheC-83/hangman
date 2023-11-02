@@ -224,7 +224,7 @@ btnPropose.addEventListener("click", () => {
 
 // fonction soumission formulaire
 function submitSuggestedWord() {
-  // closeSuggestedWord();
+  closeSuggestedWord();
   if (isFormSubmitted) {
     //empeche le cumul des appels à la fonction
     return;
@@ -250,12 +250,13 @@ function submitSuggestedWord() {
 }
 // fermer la fenetre de suggestion
 function closeSuggestedWord() {
-  cancel.addEventListener("click", () => {
+  cancel.addEventListener('click',()=>{
     console.log("coucou cancel");
-    overlay.classList.add("dnone");
-    suggestWord.classList.add("dnone");
-    activateKeyboard();
-  });
+    suggestWord.classList.add('dnone')
+    overlay.classList.add('dnone')
+  
+  }
+)
 }
 
 // choix lettre sur écran
