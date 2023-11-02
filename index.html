@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/ico.png" type="image/x-icon" />
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,7 +56,8 @@
     </div>
 
     <!-- le jeu -->
-    <header class="container">
+    <header>
+      <div class="container">
       <h1>
         Le Jeu du
         <span>P</span><span>e</span><span>n</span><span>d</span><span>u</span>
@@ -65,7 +67,7 @@
           <input type="checkbox" class="checkbox" />
           <span class="slider"></span>
         </label>
-      </div>
+      </div></div>
     </header>
 
     <section class="container content">
@@ -92,7 +94,7 @@
             <div class="resultat">
               <h3>Score: <span class="score"></span></h3>
               <h4>
-                Record : <span class="record"></span> points,  à battre !
+                Record : <span class="record"></span> points, à battre !
                 <span class="newRecord">
                   <p class="dnone">NOUVEAU RECORD !</p></span
                 >
@@ -131,45 +133,46 @@
               </div>
             </div>
           </div>
-
+          <h2 class="youSearch">Mot à trouver :</h2><br>
           <div class="word"></div>
+          <div class="letters">
+            <div class="vowels">
+              <h3 id="A" class="letter">A</h3>
+              <h3 id="E" class="letter">E</h3>
+              <h3 id="I" class="letter">I</h3>
+              <h3 id="O" class="letter">O</h3>
+              <h3 id="U" class="letter">U</h3>
+              <h3 id="Y" class="letter">Y</h3>
+            </div>
+            <div class="consonants consonants1">
+              <h3 id="B" class="letter">B</h3>
+              <h3 id="C" class="letter">C</h3>
+              <h3 id="D" class="letter">D</h3>
+              <h3 id="F" class="letter">F</h3>
+              <h3 id="G" class="letter">G</h3>
+              <h3 id="H" class="letter">H</h3>
+              <h3 id="J" class="letter">J</h3>
+              <h3 id="K" class="letter">K</h3>
+              <h3 id="L" class="letter">L</h3>
+              <h3 id="M" class="letter">M</h3>
+            </div>
+            <div class="consonants consonants2">
+              <h3 id="N" class="letter">N</h3>
+              <h3 id="P" class="letter">P</h3>
+              <h3 id="Q" class="letter">Q</h3>
+              <h3 id="R" class="letter">R</h3>
+              <h3 id="S" class="letter">S</h3>
+              <h3 id="T" class="letter">T</h3>
+              <h3 id="V" class="letter">V</h3>
+              <h3 id="W" class="letter">W</h3>
+              <h3 id="X" class="letter">X</h3>
+              <h3 id="Z" class="letter">Z</h3>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="letters">
-        <div class="vowels">
-          <h3 id="A" class="letter">A</h3>
-          <h3 id="E" class="letter">E</h3>
-          <h3 id="I" class="letter">I</h3>
-          <h3 id="O" class="letter">O</h3>
-          <h3 id="U" class="letter">U</h3>
-          <h3 id="Y" class="letter">Y</h3>
-        </div>
-        <div class="consonants consonants1">
-          <h3 id="B" class="letter">B</h3>
-          <h3 id="C" class="letter">C</h3>
-          <h3 id="D" class="letter">D</h3>
-          <h3 id="F" class="letter">F</h3>
-          <h3 id="G" class="letter">G</h3>
-          <h3 id="H" class="letter">H</h3>
-          <h3 id="J" class="letter">J</h3>
-          <h3 id="K" class="letter">K</h3>
-          <h3 id="L" class="letter">L</h3>
-          <h3 id="M" class="letter">M</h3>
-        </div>
-        <div class="consonants consonants2">
-          <h3 id="N" class="letter">N</h3>
-          <h3 id="P" class="letter">P</h3>
-          <h3 id="Q" class="letter">Q</h3>
-          <h3 id="R" class="letter">R</h3>
-          <h3 id="S" class="letter">S</h3>
-          <h3 id="T" class="letter">T</h3>
-          <h3 id="V" class="letter">V</h3>
-          <h3 id="W" class="letter">W</h3>
-          <h3 id="X" class="letter">X</h3>
-          <h3 id="Z" class="letter">Z</h3>
-        </div>
-      </div>
+      
     </section>
 
     <div class="action">
@@ -177,8 +180,10 @@
       <div class="btnAction propose"><h3>Proposer un Mot</h3></div>
     </div>
 
-    <footer class="container">
-      <h3>Made by <a href="http://barpat.fun">Barpat</a></h3>
+    <footer>
+      <div class="container">
+        <h3>Made by <a href="http://barpat.fun">Barpat</a></h3>
+      </div>
     </footer>
 
     <script src="./JS/darkMode.js"></script>

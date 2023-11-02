@@ -96,7 +96,6 @@ function closeModal(elt) {
   if (btnCloseModal) {
     btnCloseModal.forEach((btn) => {
       btn.addEventListener("click", () => {
-        console.log("closeModal ?");
         addDnone(elt);
         addDnone(overlay);
       });
@@ -145,7 +144,7 @@ function goodLetter(letterElement) {
         }, 150);
       }
     }
-    console.log("arrayWord : " + arrayWord);
+    console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
   });
 }
 
@@ -249,17 +248,16 @@ function submitSuggestedWord() {
           closeModal(badWord);
         }, 500);
         oneLostPoint();
-        activateKeyboard();
       }
       suggestedWord.value = "";
       suggestWord.classList.add("dnone");
+      activateKeyboard();
     });
   }
 }
 // fermer la fenetre de suggestion
 function closeSuggestedWord() {
   cancel.addEventListener("click", () => {
-    console.log("coucou cancel");
     suggestWord.classList.add("dnone");
     overlay.classList.add("dnone");
   });
