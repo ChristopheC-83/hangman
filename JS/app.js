@@ -244,6 +244,7 @@ btnPropose.addEventListener("click", () => {
   overlay.classList.remove("dnone");
   suggestWord.classList.remove("dnone");
   deactivateKeyboard();
+  activeKeyboard = false; 
   suggestedWord.focus();
   submitSuggestedWord();
 });
@@ -253,7 +254,7 @@ function submitSuggestedWord() {
   console.log("submitSuggestedWord en cours");
   closeSuggestedWord();
   if (isFormSubmitted) {
-    isFormSubmitted = true;//empeche le cumul des appels à la fonction
+    isFormSubmitted = true; //empeche le cumul des appels à la fonction
     return;
   } else {
     formSuggestedWord.addEventListener("submit", (event) => {
@@ -276,6 +277,7 @@ function submitSuggestedWord() {
         testWin(newScore, recordText);
       } else {
         badWord.classList.remove("dnone");
+        console.log("ici ?")
         setTimeout(() => {
           closeModal(badWord);
         }, 500);

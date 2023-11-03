@@ -18,7 +18,7 @@ export function updateRecord(scoreText, recordText) {
 // generation score
 
 export function createScoreIfNull(){
-  return sessionStorage.getItem("score") ? sessionStorage.getItem("score"):0
+  return sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")):0
 }
 
 // affichage record

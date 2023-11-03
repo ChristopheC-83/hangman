@@ -9,7 +9,9 @@ export function reset() {
 export function drawingHangman(testLeftText, testMax) {
   let numberImg = 0;
   numberImg = testMax - testLeftText;
-  imgHangman[numberImg].classList.remove("dnone");
+  if (imgHangman[numberImg].classList.contains("dnone")) {
+    imgHangman[numberImg].classList.remove("dnone");
+  }
   if (numberImg === 7) {
     imgHangman[numberImg].classList.add("appearHead");
   } else {
