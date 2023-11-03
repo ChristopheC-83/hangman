@@ -1,7 +1,8 @@
 .victory,
 .defeat,
 .suggestWord,
-.badWord, .sameLetter {
+.badWord,
+.sameLetter {
   @include posMid;
   width: 80%;
   height: fit-content;
@@ -35,27 +36,29 @@
     border-radius: 10px;
     font-size: 18px;
   }
+}
 
-  #btnSuggestedWord,
-  .cancel {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background-color: $bgc_light;
-    border: 1px solid $border_light2;
-    border-radius: 10px;
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-  #btnSuggestedWord:hover,
-  .cancel:hover {
-    background-color: $bgc_dark;
-    h4{
-    color : $text_dark1;}
+#btnSuggestedWord,
+.cancel {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: $bgc_light;
+  border: 1px solid $border_light2;
+  border-radius: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+#btnSuggestedWord:hover,
+.cancel:hover {
+  background-color: $bgc_dark;
+  h4 {
+    color: $text_dark1;
   }
 }
 
-.nextWord, .closeModal {
+.nextWord,
+.closeModal {
   border-radius: 10px;
   color: $text_light1;
   border: 3px solid $border_light2;

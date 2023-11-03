@@ -1,15 +1,11 @@
 body.dark {
   transition: all 0.3s;
   color: $text_dark1;
-  background-color: #333;
+  background-color: $bgc_dark;
   footer,
   header {
     background-color: $bgc_dark;
-  }
-
-  .container {
-    background-color: $bgc_dark;
-    border: 1px solid $border_dark1;
+    box-shadow: 0px 0px 10px white;
   }
 
   h1,
@@ -25,8 +21,6 @@ body.dark {
   }
 
   .letters {
-    border: 1px solid $border_dark2;
-
     .vowels,
     .consonants {
       h3 {
@@ -40,55 +34,95 @@ body.dark {
     }
   }
 
-  .hangman {
-    border: 1px solid $border_dark2;
-  }
-
-  .info {
-    border: 1px solid $border_dark2;
-  }
+  
   #buy_vowel,
   #buy_consonant,
   #buy_ht {
-    border: 3px solid $border_dark2;
+    // border: 3px solid $border_dark2;
     background-color: $components_dark2;
+    &:hover {
+      border: 3px solid $border_dark1;
+      box-shadow: 0px 0px 10px white;
+    }
   }
   .word {
-    border: 1px solid $border_dark2;
+    // border: 1px solid $border_dark2;
     h2 {
       border: 3px solid $border_dark2;
       background-color: $components_dark2;
     }
   }
+
   .btnAction {
     border: 3px solid $border_dark2;
     background-color: $components_dark2;
     &:hover {
       border: 3px solid $border_dark1;
       background-color: $components_dark1;
-      transform: scale(1.1);
+      box-shadow: 0px 0px 10px white;
     }
   }
-  .imgHangman{
-  
-    filter:drop-shadow(2px 2px 8px $bgc_light);
+  .imgHangman {
+    filter: drop-shadow(2px 2px 8px $bgc_light);
   }
 
-  .overlay{
-  
-    background-color: #7B7B7B90;
+  .overlay {
+    background: linear-gradient(
+      90deg,
+      #00000000 33%,
+      $bgc_overlay_dark 40%,
+      $bgc_overlay_dark 80%,
+      #00000000 100%
+    );
   }
-  .victory, .defeat{
-  
-    color : $text_dark1;
+
+  .victory,
+  .defeat,
+  .suggestWord,
+  .badWord,
+  .sameLetter {
+    color: $text_dark1;
     border: 3px solid $border_dark2;
     background-color: $components_dark2;
   }
 
-  .nextWord{
-  
-    color : $text_dark1;
+  .nextWord,
+  .closeModal,
+  .cancel,
+  #btnSuggestedWord {
+    color: $text_dark1;
     border: 3px solid $border_dark1;
-    background-color: $components_dark1;
+    background-color: $bgc_dark;
+    transition: all 0.3s;
+  }
+
+  .nextWord:hover,
+  .closeModal:hover,
+  .cancel:hover,
+  #btnSuggestedWord:hover {
+    background-color: $bgc_light;
+    h4 {
+      color: $text_light1;
+    }
+  }.suggestedLetter {
+    background-color: #313131;
+    transition: all 0.3s;
+    h3,
+    h4 {
+      color: rgb(245, 134, 6);
+      text-align: center;
+    }
+  }
+
+  #suggestedWord {
+    background-color: $bgc_dark;
+    color: $text_dark2;
+  }
+
+  .newRecord {
+    .newRecordAnimation {
+      background-color: $bgc_dark;
+      box-shadow: 0 0 30px 10px $bgc_dark;
+    }
   }
 }

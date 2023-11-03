@@ -18,6 +18,7 @@
     &:hover {
         border: 3px solid $border_light1;
         background-color: $components_light1;
-        transform: scale(1.1);
+        box-shadow: 0 0 10px black;
+        transform: scale(1.075);
       }
 }

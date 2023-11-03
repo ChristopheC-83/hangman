@@ -1,4 +1,3 @@
-
 const imgHangman = document.querySelectorAll(".imgHangman");
 
 // reset
@@ -12,9 +11,22 @@ export function drawingHangman(testLeftText, testMax) {
   numberImg = testMax - testLeftText;
   imgHangman[numberImg].classList.remove("dnone");
   if (numberImg === 7) {
-    imgHangman[4].classList.add("dnone");
-    imgHangman[5].classList.add("dnone");
-    imgHangman[6].classList.add("dnone");
+    imgHangman[numberImg].classList.add("appearHead");
+  } else {
+    imgHangman[numberImg].classList.add("appearHangman");
+  }
+  // if (numberImg === 7) {
+  //   setTimeout(() => {
+  //     imgHangman[4].classList.add("finalHangman");
+  //     imgHangman[5].classList.add("finalHangman");
+  //     imgHangman[6].classList.add("finalHangman");
+  //   }, 500);
+  // }
+  if (numberImg === 7) {
+    setTimeout(() => {
+      imgHangman[4].classList.add("finalHangman");
+      imgHangman[5].classList.add("finalHangman");
+      imgHangman[6].classList.add("finalHangman");
+    }, 100);
   }
 }
-

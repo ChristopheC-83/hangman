@@ -46,13 +46,21 @@
   position: relative;
   cursor: pointer;
   &:hover {
-    border: 3px solid black;
+    border: 3px solid $border_light1;
+    box-shadow: 0 0 10px black;
     h3,
     h4 {
       transform: scale(1.05);
       transition: all 0.3s;
     }
   }
+}
+
+.hangMan_token {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .suggestedLetter {
@@ -63,11 +71,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  h3, h4 {
+  h3,
+  h4 {
     color: rgb(245, 134, 6);
     text-align: center;
   }
-  
 }
 
 .resultat {
@@ -93,6 +101,9 @@
   .newRecordAnimation {
     color: red !important;
     animation: animNewRecord 3s forwards;
+    background-color: $bgc_light;
+    border-radius: 15px;
+    box-shadow: 0 0 30px 10px $bgc_light;
   }
 
   @keyframes animNewRecord {
@@ -112,29 +123,14 @@
   }
 }
 
-.hangMan_token {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
 #buy_ht {
   width: 90%;
   @include flexMid;
   text-align: center;
   padding: 15px 25px;
-  transition: all 0.3s;
-  &:hover {
-    border: 3px solid black;
-
-    h4 {
-      transform: scale(1.05);
-      transition: all 0.3s;
-    }
-  }
 }
 
-.youSearch{
+.youSearch {
   text-align: center;
   margin-top: 20px;
 }

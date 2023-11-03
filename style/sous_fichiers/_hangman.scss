@@ -12,5 +12,42 @@
   filter: drop-shadow(1px 1px 5px $bgc_dark);
   transform: translate(-50%, -50%);
   transition: all 0.3s;
+  animation: initHangman 1s ease-in-out forwards;
+}
+
+@keyframes initHangman{
+  from{ 
+  top: 0%;
+  }
+}
+
+.appearHangman{
+animation: appear 0.5s ease-in-out forwards;
+}
+
+@keyframes appear{
+  from{ 
+    top: 0%;
+    }
+}
+.finalHangman{
+animation: finalHangman 0.5s ease-in-out forwards;
+z-index: 9;
+}
+
+@keyframes finalHangman{
+  to{ 
+    top: 70%;
+    }
+}
+.appearHead{
+animation: appearHead 0.5s ease-in-out forwards;
+z-index: 5;
+}
+
+@keyframes appearHead{
+  to{ 
+    top: 70%;
+    }
 }
 

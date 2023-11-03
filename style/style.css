@@ -187,8 +187,8 @@ p {
   font-size: clamp(16px, 16px + 1.5vw, 30px);
   text-transform: uppercase;
   border-radius: 10px;
-  border: 3px solid #BBBBBB;
-  background-color: #E0E0E0;
+  border: 3px solid #bbbbbb;
+  background-color: #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,8 +197,8 @@ p {
 }
 .letters .vowels h3:hover,
 .letters .consonants h3:hover {
-  border: 3px solid #CECECE;
-  background-color: #E8E8E8;
+  border: 3px solid #cecece;
+  background-color: #e8e8e8;
   transform: scale(1.1);
 }
 
@@ -238,8 +238,43 @@ p {
   filter: drop-shadow(1px 1px 5px #191919);
   transform: translate(-50%, -50%);
   transition: all 0.3s;
+  animation: initHangman 1s ease-in-out forwards;
 }
 
+@keyframes initHangman {
+  from {
+    top: 0%;
+  }
+}
+.appearHangman {
+  animation: appear 0.5s ease-in-out forwards;
+}
+
+@keyframes appear {
+  from {
+    top: 0%;
+  }
+}
+.finalHangman {
+  animation: finalHangman 0.5s ease-in-out forwards;
+  z-index: 9;
+}
+
+@keyframes finalHangman {
+  to {
+    top: 70%;
+  }
+}
+.appearHead {
+  animation: appearHead 0.5s ease-in-out forwards;
+  z-index: 5;
+}
+
+@keyframes appearHead {
+  to {
+    top: 70%;
+  }
+}
 .main_frame {
   flex-grow: 1;
   display: flex;
@@ -283,8 +318,8 @@ p {
 #buy_ht,
 .suggestedLetter {
   width: 75%;
-  border: 3px solid #BBBBBB;
-  background-color: #E0E0E0;
+  border: 3px solid #bbbbbb;
+  background-color: #e0e0e0;
   border-radius: 10px;
   transition: all 0.3s;
   position: relative;
@@ -294,7 +329,8 @@ p {
 #buy_consonant:hover,
 #buy_ht:hover,
 .suggestedLetter:hover {
-  border: 3px solid black;
+  border: 3px solid #cecece;
+  box-shadow: 0 0 10px black;
 }
 #buy_vowel:hover h3,
 #buy_vowel:hover h4,
@@ -308,6 +344,13 @@ p {
   transition: all 0.3s;
 }
 
+.hangMan_token {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .suggestedLetter {
   position: absolute;
   width: 100%;
@@ -317,7 +360,8 @@ p {
   left: 0;
   right: 0;
 }
-.suggestedLetter h3, .suggestedLetter h4 {
+.suggestedLetter h3,
+.suggestedLetter h4 {
   color: rgb(245, 134, 6);
   text-align: center;
 }
@@ -348,6 +392,9 @@ p {
 .newRecord .newRecordAnimation {
   color: red !important;
   animation: animNewRecord 3s forwards;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 0 30px 10px #f9f9f9;
 }
 @keyframes animNewRecord {
   0% {
@@ -364,13 +411,6 @@ p {
   }
 }
 
-.hangMan_token {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 #buy_ht {
   width: 90%;
   display: flex;
@@ -378,14 +418,6 @@ p {
   align-items: center;
   text-align: center;
   padding: 15px 25px;
-  transition: all 0.3s;
-}
-#buy_ht:hover {
-  border: 3px solid black;
-}
-#buy_ht:hover h4 {
-  transform: scale(1.05);
-  transition: all 0.3s;
 }
 
 .youSearch {
@@ -409,8 +441,8 @@ p {
   padding: 5px 15px;
   border-radius: 10px;
   text-transform: uppercase;
-  border: 3px solid #BBBBBB;
-  background-color: #E0E0E0;
+  border: 3px solid #bbbbbb;
+  background-color: #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -428,16 +460,17 @@ p {
 .btnAction {
   font-size: clamp(16px, 16px + 1.5vw, 30px);
   border-radius: 10px;
-  border: 3px solid #BBBBBB;
-  background-color: #E0E0E0;
+  border: 3px solid #bbbbbb;
+  background-color: #e0e0e0;
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.3s;
 }
 .btnAction:hover {
-  border: 3px solid #CECECE;
-  background-color: #E8E8E8;
-  transform: scale(1.1);
+  border: 3px solid #cecece;
+  background-color: #e8e8e8;
+  box-shadow: 0 0 10px black;
+  transform: scale(1.075);
 }
 
 .toggle-switch {
@@ -515,7 +548,8 @@ p {
 .victory,
 .defeat,
 .suggestWord,
-.badWord, .sameLetter {
+.badWord,
+.sameLetter {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -532,8 +566,8 @@ p {
   padding: 20px;
   border-radius: 10px;
   color: #646464;
-  border: 3px solid #BBBBBB;
-  background-color: #E0E0E0;
+  border: 3px solid #bbbbbb;
+  background-color: #e0e0e0;
   z-index: 15;
   transition: all 1.8s;
 }
@@ -555,31 +589,34 @@ p {
   border-radius: 10px;
   font-size: 18px;
 }
-#formSuggestedWord #btnSuggestedWord,
-#formSuggestedWord .cancel {
+
+#btnSuggestedWord,
+.cancel {
   display: block;
   width: 100%;
   text-align: center;
-  background-color: #F9F9F9;
-  border: 1px solid #BBBBBB;
+  background-color: #f9f9f9;
+  border: 1px solid #bbbbbb;
   border-radius: 10px;
   transition: all 0.3s;
   cursor: pointer;
 }
-#formSuggestedWord #btnSuggestedWord:hover,
-#formSuggestedWord .cancel:hover {
+
+#btnSuggestedWord:hover,
+.cancel:hover {
   background-color: #191919;
 }
-#formSuggestedWord #btnSuggestedWord:hover h4,
-#formSuggestedWord .cancel:hover h4 {
-  color: #B4B4B4;
+#btnSuggestedWord:hover h4,
+.cancel:hover h4 {
+  color: #b4b4b4;
 }
 
-.nextWord, .closeModal {
+.nextWord,
+.closeModal {
   border-radius: 10px;
   color: #646464;
-  border: 3px solid #BBBBBB;
-  background-color: #E0E0E0;
+  border: 3px solid #bbbbbb;
+  background-color: #e0e0e0;
   padding: 10px 20px;
   margin: 20px;
   cursor: pointer;
@@ -614,16 +651,13 @@ p {
 }
 body.dark {
   transition: all 0.3s;
-  color: #B4B4B4;
-  background-color: #333;
+  color: #b4b4b4;
+  background-color: #191919;
 }
 body.dark footer,
 body.dark header {
   background-color: #191919;
-}
-body.dark .container {
-  background-color: #191919;
-  border: 1px solid #3A3A3A;
+  box-shadow: 0px 0px 10px white;
 }
 body.dark h1,
 body.dark h2,
@@ -634,10 +668,7 @@ body.dark a,
 body.dark label,
 body.dark input,
 body.dark button {
-  color: #B4B4B4;
-}
-body.dark .letters {
-  border: 1px solid #606060;
+  color: #b4b4b4;
 }
 body.dark .letters .vowels h3,
 body.dark .letters .consonants h3 {
@@ -646,23 +677,19 @@ body.dark .letters .consonants h3 {
 }
 body.dark .letters .vowels h3:hover,
 body.dark .letters .consonants h3:hover {
-  border: 3px solid #3A3A3A;
-  background-color: #2A2A2A;
-}
-body.dark .hangman {
-  border: 1px solid #606060;
-}
-body.dark .info {
-  border: 1px solid #606060;
+  border: 3px solid #3a3a3a;
+  background-color: #2a2a2a;
 }
 body.dark #buy_vowel,
 body.dark #buy_consonant,
 body.dark #buy_ht {
-  border: 3px solid #606060;
   background-color: #313131;
 }
-body.dark .word {
-  border: 1px solid #606060;
+body.dark #buy_vowel:hover,
+body.dark #buy_consonant:hover,
+body.dark #buy_ht:hover {
+  border: 3px solid #3a3a3a;
+  box-shadow: 0px 0px 10px white;
 }
 body.dark .word h2 {
   border: 3px solid #606060;
@@ -673,25 +700,62 @@ body.dark .btnAction {
   background-color: #313131;
 }
 body.dark .btnAction:hover {
-  border: 3px solid #3A3A3A;
-  background-color: #2A2A2A;
-  transform: scale(1.1);
+  border: 3px solid #3a3a3a;
+  background-color: #2a2a2a;
+  box-shadow: 0px 0px 10px white;
 }
 body.dark .imgHangman {
-  filter: drop-shadow(2px 2px 8px #F9F9F9);
+  filter: drop-shadow(2px 2px 8px #f9f9f9);
 }
 body.dark .overlay {
-  background-color: rgba(123, 123, 123, 0.5647058824);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 33%, rgba(25, 25, 25, 0.5647058824) 40%, rgba(25, 25, 25, 0.5647058824) 80%, rgba(0, 0, 0, 0) 100%);
 }
-body.dark .victory, body.dark .defeat {
-  color: #B4B4B4;
+body.dark .victory,
+body.dark .defeat,
+body.dark .suggestWord,
+body.dark .badWord,
+body.dark .sameLetter {
+  color: #b4b4b4;
   border: 3px solid #606060;
   background-color: #313131;
 }
-body.dark .nextWord {
-  color: #B4B4B4;
-  border: 3px solid #3A3A3A;
-  background-color: #2A2A2A;
+body.dark .nextWord,
+body.dark .closeModal,
+body.dark .cancel,
+body.dark #btnSuggestedWord {
+  color: #b4b4b4;
+  border: 3px solid #3a3a3a;
+  background-color: #191919;
+  transition: all 0.3s;
+}
+body.dark .nextWord:hover,
+body.dark .closeModal:hover,
+body.dark .cancel:hover,
+body.dark #btnSuggestedWord:hover {
+  background-color: #f9f9f9;
+}
+body.dark .nextWord:hover h4,
+body.dark .closeModal:hover h4,
+body.dark .cancel:hover h4,
+body.dark #btnSuggestedWord:hover h4 {
+  color: #646464;
+}
+body.dark .suggestedLetter {
+  background-color: #313131;
+  transition: all 0.3s;
+}
+body.dark .suggestedLetter h3,
+body.dark .suggestedLetter h4 {
+  color: rgb(245, 134, 6);
+  text-align: center;
+}
+body.dark #suggestedWord {
+  background-color: #191919;
+  color: #eeeeee;
+}
+body.dark .newRecord .newRecordAnimation {
+  background-color: #191919;
+  box-shadow: 0 0 30px 10px #191919;
 }
 
 body {
@@ -707,19 +771,18 @@ body {
 footer,
 header {
   text-align: center;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   padding: 10px;
+  box-shadow: 0px 0px 10px black;
 }
 
 header {
   position: relative;
   margin-bottom: 20px;
-  box-shadow: 0px 0px 10px black;
 }
 
 footer {
   margin-top: 20px;
-  box-shadow: 0px 0px 10px black;
 }
 
 .dnone {
