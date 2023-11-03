@@ -1,4 +1,3 @@
-
 import { newWordToPlay, updateTestLeft } from "./modules/basisFunctions.js";
 
 import {
@@ -30,18 +29,18 @@ const suggestedWord = document.querySelector("#suggestedWord");
 const unknowWord = document.querySelector(".unknowWord");
 const victory = document.querySelector(".victory");
 const word = document.querySelector(".word");
-let activeKeyboard = true;    // acive ou désactive le clavier physique vis à vis des modales                              
-let isFormSubmitted = false;  // permet de ne pas lancer "proposer mot" plusieurs fois et perdre plusieurs points
-let testMax = 7;              // à modifier... mais attention les images ... à adapter en fonction    
-let testLeftText = testMax;   // nb de coup restant
-let scoreText = createScoreIfNull()
-let recordText = localStorage.getItem("record")   //record mis en mémoire à chaque fin de manche
+let activeKeyboard = true; // acive ou désactive le clavier physique vis à vis des modales
+let isFormSubmitted = false; // permet de ne pas lancer "proposer mot" plusieurs fois et perdre plusieurs points
+let testMax = 7; // à modifier... mais attention les images ... à adapter en fonction
+let testLeftText = testMax; // nb de coup restant
+let scoreText = createScoreIfNull();
+let recordText = localStorage.getItem("record") //record mis en mémoire à chaque fin de manche
   ? parseInt(localStorage.getItem("record"))
   : 0;
-let chosenLetter;                          // lettre choisie à l'écran ou sur clavier physique
-let chosenWord = newWordToPlay();         // mot à deviner
-let wordInArray = chosenWord.split("");  // mot à deviner découpé dans un tableau
-let leftLetters = wordInArray;            // lettre restant à découvrir. Utile pour les achat de voyelles et consonnes
+let chosenLetter; // lettre choisie à l'écran ou sur clavier physique
+let chosenWord = newWordToPlay(); // mot à deviner
+let wordInArray = chosenWord.split(""); // mot à deviner découpé dans un tableau
+let leftLetters = wordInArray; // lettre restant à découvrir. Utile pour les achat de voyelles et consonnes
 
 // Créez une fonction pour activer l'écoute des événements clavier
 function activateKeyboard() {
@@ -98,25 +97,23 @@ function closeModal(elt) {
   if (btnCloseModal) {
     btnCloseModal.forEach((btn) => {
       btn.addEventListener("click", () => {
-        resetAfterCloseModal(elt)
+        resetAfterCloseModal(elt);
       });
     });
     document.addEventListener("keyup", (event) => {
       if (event.key === "Enter" || event.keyCode === 13) {
-        resetAfterCloseModal(elt)
+        resetAfterCloseModal(elt);
       }
     });
   }
 }
 // action après fermeture modale par clavier ou souris
-function resetAfterCloseModal(elt){
+function resetAfterCloseModal(elt) {
   addDnone(elt);
   addDnone(overlay);
   activeKeyboard = true;
   activateKeyboard();
-  if(elt===badWord){
-    oneLostPoint()
-  }
+  
 }
 
 // perte 1 point mauvaise lettre ou proposition
@@ -153,10 +150,9 @@ function goodLetter(letterElement) {
 
       leftLetters = leftLetters.filter((elt) => elt !== letter);
       if (leftLetters.length === 0) {
-        updateRecord(scoreText, recordText)
+        updateRecord(scoreText, recordText);
         setTimeout(() => {
-        testWin(scoreText, wordInArray, recordText);
-          
+          testWin(scoreText, wordInArray, recordText);
         }, 150);
       }
     }
@@ -244,7 +240,7 @@ btnPropose.addEventListener("click", () => {
   overlay.classList.remove("dnone");
   suggestWord.classList.remove("dnone");
   deactivateKeyboard();
-  activeKeyboard = false; 
+  activeKeyboard = false;
   suggestedWord.focus();
   submitSuggestedWord();
 });
@@ -261,36 +257,33 @@ function submitSuggestedWord() {
       event.preventDefault();
       isFormSubmitted = true;
       let proposedWord = suggestedWord.value;
-      if(proposedWord===""){
-        let textInitial = label.innerText
-        label.innerText = "C'est vide ! Propose une mot ! 😅"
+      if (proposedWord === "") {
+        let textInitial = label.innerText;
+        label.innerText = "C'est vide ! Propose une mot ! 😅";
         setTimeout(() => {
-          label.innerText =textInitial
+          label.innerText = textInitial;
         }, 3000);
-        return
-      }
-      if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
-        let oldScore = createScoreIfNull()
-        let newScore =
-          parseInt(wordInArray.length) +
-          parseInt(oldScore);
+        return;
+      } else if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
+        let oldScore = createScoreIfNull();
+        let newScore = parseInt(wordInArray.length) + parseInt(oldScore);
         testWin(newScore, recordText);
       } else {
         badWord.classList.remove("dnone");
-        console.log("ici ?")
+        console.log("pb ici ?");
         setTimeout(() => {
           closeModal(badWord);
         }, 500);
-        // oneLostPoint();
+        oneLostPoint();
       }
       suggestedWord.value = "";
       suggestWord.classList.add("dnone");
       activateKeyboard();
       isFormSubmitted = false;
-      return;
+      // return;
     });
   }
-  
+
   isFormSubmitted = true;
 }
 // fermer la fenetre de suggestion
@@ -320,4 +313,3 @@ function startGame() {
 
 startGame();
 const letters_word = document.querySelectorAll(".letter_word");
-
