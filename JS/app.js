@@ -153,8 +153,9 @@ function goodLetter(letterElement) {
 
       arrayWord = arrayWord.filter((elt) => elt !== letter);
       if (arrayWord.length === 0) {
+        updateRecord(scoreText, recordText)
         setTimeout(() => {
-          testWin(scoreText, wordInArray, recordText);
+        testWin(scoreText, wordInArray, recordText);
           
         }, 150);
       }
