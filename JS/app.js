@@ -30,7 +30,7 @@ const victory = document.querySelector(".victory");
 const word = document.querySelector(".word");
 let activeKeyboard = true;
 let isFormSubmitted = false;
-let testMax = 1;
+let testMax = 7;
 let testLeftText = testMax;
 let scoreText = sessionStorage.getItem("score")
   ? parseInt(sessionStorage.getItem("score"))
@@ -155,6 +155,7 @@ function goodLetter(letterElement) {
       if (arrayWord.length === 0) {
         setTimeout(() => {
           testWin(scoreText, wordInArray, recordText);
+          
         }, 150);
       }
     }

@@ -3,8 +3,7 @@
 .suggestWord,
 .badWord, .sameLetter {
   @include posMid;
-  min-width: 50vw;
-  width: 100%;
+  width: 80%;
   height: fit-content;
   @include flexMid;
   flex-direction: column;

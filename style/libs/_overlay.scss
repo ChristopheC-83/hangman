@@ -6,7 +6,14 @@
   padding: 0;
   left: 0;
   right: 0;
-  background-color: #83838390;
+  background: 
+  linear-gradient(
+    90deg,
+    #00000000 33%,
+    $bgc_overlay_light 40%,
+    $bgc_overlay_light 80%,
+    #00000000 100%,
+  )
+  ;
   z-index: 10;
 }
-
