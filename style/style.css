@@ -473,6 +473,11 @@ p {
   transform: scale(1.075);
 }
 
+.bodyDoc {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .userOrTech {
   width: 100%;
   display: flex;
@@ -501,18 +506,44 @@ p {
   font-weight: bold;
 }
 
-.docs {
-  border: 1px solid violet;
-  position: relative;
-  margin: 0 auto;
+.pageChoose {
+  background-color: rgb(241, 155, 241);
 }
-.docs .docsUser,
-.docs .docsDev {
+
+.docUser,
+.docDev {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  text-align: center;
+}
+.docUser h3,
+.docDev h3 {
+  margin: 30px;
+}
+.docUser img,
+.docDev img {
+  margin: 30px;
+}
+
+.docDev {
+  align-items: start;
+}
+.docDev h3 {
+  width: 100%;
+  text-align: center;
+}
+.docDev h4 {
+  text-decoration: underline;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.dnone {
+  display: none;
 }
 
 .toggle-switch {

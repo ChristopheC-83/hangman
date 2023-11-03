@@ -18,7 +18,7 @@
     />
     <title>HangMan Documentation</title>
   </head>
-  <body>
+  <body class="bodyDoc">
     <header>
       <div class="container">
         <h2>Le Jeu du Pendu : documentation technique</h2>
@@ -28,19 +28,73 @@
 
     <div class="content documentation">
       <div class="userOrTech">
-        <div class="user">Utilisateur</div>
+        <div class="user pageChoose">Utilisateur</div>
         <div class="dev">Développeur</div>
       </div>
-      <div class="docs">
-        <div class="docUser ">
-            <h3>Documentation utilisateur</h3>
-          <img src="./images/docTech/doc_user_1.png" alt="user's documentation 1" />
-          <img src="./images/docTech/doc_user_2.png" alt="user's documentation 2" />
+      <div class="container">
+        <div class="docUser">
+          <h3>Documentation utilisateur</h3>
+          <img
+            src="./images/docTech/doc_user_1.png"
+            alt="user's documentation 1"
+          />
+          <img
+            src="./images/docTech/doc_user_2.png"
+            alt="user's documentation 2"
+          />
         </div>
-        <div class="docDev">
-            <h3>Documentation Développeur</h3>
-          <img src="./images/docTech/doc_user_2.png" alt="user's documentation 1" />
-          <img src="./images/docTech/doc_user_2.png" alt="user's documentation 2" />
+        <div class="docDev dnone">
+          <h3>Documentation Développeur</h3>
+
+          <h4>Le contenu :</h4>
+          <p>Le contenu de base est du HTML traditionnel.</p>
+          <p>Les différentes divisions sont créées dès ce fichier.</p>
+          <p>Les fenêtres modales sont également codées ici.</p>
+          <p>Le dossier contient 3 fichiers :</p>
+          <p> - l'application</p>
+          <p> - la page parodique</p>
+          <p> - cette documentation</p>
+
+          <p><u>Remarque :</u></p>
+          <p>
+            Les touches de l'alphabet auraient pu (dû) être codées en
+            javascript.
+          </p>
+          <p>Cela aurait pris moins de lignes de code !</p>
+          <p></p>
+          <h4>Le style :</h4>
+          <p>
+            Afin d'organiser les fichiers CSS, SASS a été utilisé sur ce projet.
+          </p>
+          <p>
+            Un fichier css unique est utilisé pour la page parodique de "My
+            Magouille Bank": mmb.css.
+          </p>
+          <p></p>
+          <h4>La programmation :</h4>
+          <p>
+            De manière très basique, du Vanilla javascript nous a permis le
+            codage de la partie logique.
+          </p>
+          <p>
+            Afin d'alléger le fichier de base, quelques fonctions ont été
+            déportées sur des modules annexes.
+          </p>
+          <p>J'aurais souhaité plus de modularité, mais ! :</p>
+          <p>=> les fonctions auraient pris un nombre incohérent de paramètres,</p>
+          <p>
+            => bien souvent 4 ou plus, ce qui ne nous a pas semblé raisonnable.
+          </p>
+          <h4>Idées d'améliorations :</h4>
+          <p>
+            La structure de ce projet avec les différentes actions possibles
+            aurait surement apprécié une librairie telle que React.
+          </p>
+          <p>
+            L'application web est pensée uniquement en desktop et n'est en aucun
+            cas responsive.
+          </p>
+          <p>La liste des mots disponibles est statique et invariable.</p>
         </div>
       </div>
     </div>
@@ -51,5 +105,6 @@
         <p class="doc"><a href="index.html"> / retour au jeu</a></p>
       </div>
     </footer>
+    <script src="./JS/documentation/doc.js"></script>
   </body>
 </html>
