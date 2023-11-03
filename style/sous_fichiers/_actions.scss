@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-top: 20px;
 }
 
 .btnAction {
@@ -11,7 +12,7 @@
     border-radius: 10px;
     border: 3px solid $border_light2;
     background-color: $components_light2;
-    padding: 5px 15px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s;
     &:hover {

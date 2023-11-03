@@ -15,7 +15,8 @@
 
 body {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   color: $text_light2;
@@ -26,7 +27,7 @@ footer,
 header {
   text-align: center;
   background-color: $bgc_light;
-  padding: 20px;
+  padding: 10px;
 }
 
 header {
