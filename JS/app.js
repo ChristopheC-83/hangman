@@ -1,4 +1,4 @@
-import { initialWords } from "./modules/wordsList.js";
+
 import { newWordToPlay, updateTestLeft } from "./modules/basisFunctions.js";
 
 import {
