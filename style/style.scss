@@ -8,6 +8,7 @@
 @import "./sous_fichiers/hangman";
 @import "./sous_fichiers/main_frame";
 @import "./sous_fichiers/actions";
+@import "./sous_fichiers/docTech";
 @import "./libs/toggle_switch";
 @import "./libs/overlay";
 @import "./libs/modals";
@@ -35,10 +36,17 @@ header {
   position: relative;
   margin-bottom: 20px;
 }
-footer{
-margin-top: 20px;
+footer {
+  margin-top: 20px;
+  p,
+  h3 {
+    display: inline-block;
+  }
+  p {
+    font-size: 12px;
+    cursor: pointer;
+  }
 }
-
 
 .dnone {
   display: none;

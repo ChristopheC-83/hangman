@@ -1,0 +1,41 @@
+.userOrTech {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.user,
+.dev {
+  width: 200px;
+  height: 80px;
+  @include flexMid;
+  border: 3px solid rgb(129, 10, 129);
+  border-radius: 10px;
+  font-size: 22px;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(241, 155, 241);
+    font-weight: bold;
+  }
+}
+
+
+.docs {
+  border: 1px solid violet;
+  position: relative;
+  margin: 0 auto;
+
+  .docsUser,
+  .docsDev {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}

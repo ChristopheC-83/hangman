@@ -473,6 +473,48 @@ p {
   transform: scale(1.075);
 }
 
+.userOrTech {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.user,
+.dev {
+  width: 200px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgb(129, 10, 129);
+  border-radius: 10px;
+  font-size: 22px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.user:hover,
+.dev:hover {
+  background-color: rgb(241, 155, 241);
+  font-weight: bold;
+}
+
+.docs {
+  border: 1px solid violet;
+  position: relative;
+  margin: 0 auto;
+}
+.docs .docsUser,
+.docs .docsDev {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .toggle-switch {
   position: absolute;
   width: 100px;
@@ -783,6 +825,14 @@ header {
 
 footer {
   margin-top: 20px;
+}
+footer p,
+footer h3 {
+  display: inline-block;
+}
+footer p {
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .dnone {
