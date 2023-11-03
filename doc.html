@@ -66,6 +66,7 @@
           <p>
             Afin d'organiser les fichiers CSS, SASS a été utilisé sur ce projet.
           </p>
+          <p>les dégradés de couleurs sont issus du site : <a href="https://www.radix-ui.com/colors"><u>radix-ui.com</u></a></p>
           <p>
             Un fichier css unique est utilisé pour la page parodique de "My
             Magouille Bank": mmb.css.
@@ -76,6 +77,7 @@
             De manière très basique, du Vanilla javascript nous a permis le
             codage de la partie logique.
           </p>
+          <p>Aucune dépendance externe n'est appeléeà ce niveau (hormis SASS comme vu avant).</p>
           <p>
             Afin d'alléger le fichier de base, quelques fonctions ont été
             déportées sur des modules annexes.
@@ -85,6 +87,17 @@
           <p>
             => bien souvent 4 ou plus, ce qui ne nous a pas semblé raisonnable.
           </p>
+          <p>Le <u>localStorage</u> est utilisé pour l'enregistrement des données suivantes :</p>
+          <p> - le mode dark /light de l'interface</p>
+          <p> - le record (modification en fin de manche si battu)</p>
+          
+          <p>Le <u>sessionStorage</u> est utilisé pour l'enregistrement des données suivantes :</p>
+          <p> - le nombre de Hangman Token restants (modification en temps réel) </p>
+          <p> - le score (modification en fin de manche)</p>
+          <p> - le mot à deviner (renseigné au début de chaque manche)</p>
+
+
+
           <h4>Idées d'améliorations :</h4>
           <p>
             La structure de ce projet avec les différentes actions possibles

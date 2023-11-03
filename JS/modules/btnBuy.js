@@ -11,17 +11,16 @@ const suggestedConsonantTxt2 = document.querySelector(".suggestedConsonant h3");
 let randomIndex;
 let proposedLetter;
 let searchedLetters;
-let nbHT = sessionStorage.getItem("nbHT") ? sessionStorage.getItem("nbHT") : 10; //#################################### remettre 5
+let nbHT = sessionStorage.getItem("nbHT") ? sessionStorage.getItem("nbHT") : 5;
 ht_left.textContent = nbHT;
 
 // initialisation des Hangman_Token
 function sendNbHT() {
   if (sessionStorage.getItem("nbHT") === null) {
-    sessionStorage.setItem("nbHT", 10); //#################################### remettre 5
+    sessionStorage.setItem("nbHT", 5); 
   }
 }
 sendNbHT();
-console.log(nbHT); //####################### à effacer
 
 export function buyVowel(arrayWord) {
   if (nbHT > 0) {

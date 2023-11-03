@@ -15,6 +15,12 @@ export function updateRecord(scoreText, recordText) {
   }
 }
 
+// generation score
+
+export function createScoreIfNull(){
+  return sessionStorage.getItem("score") ? sessionStorage.getItem("score"):0
+}
+
 // affichage record
 export function showRecord(recordText) {
   if (!localStorage.getItem("record")) {

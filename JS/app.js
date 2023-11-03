@@ -5,6 +5,7 @@ import {
   updateRecord,
   showRecord,
   updateScore,
+  createScoreIfNull,
 } from "./modules/scoreFunctions.js";
 
 import { reset, drawingHangman } from "./modules/basisActions.js";
@@ -18,6 +19,7 @@ const btnReset = document.querySelector(".reset");
 const cancel = document.querySelector(".cancel");
 const defeat = document.querySelector(".defeat");
 const formSuggestedWord = document.querySelector("#formSuggestedWord");
+const label = document.querySelector("#label");
 const letters = document.querySelectorAll(".letter");
 const nextWord = document.querySelectorAll(".nextWord");
 const btnCloseModal = document.querySelectorAll(".closeModal");
@@ -28,20 +30,18 @@ const suggestedWord = document.querySelector("#suggestedWord");
 const unknowWord = document.querySelector(".unknowWord");
 const victory = document.querySelector(".victory");
 const word = document.querySelector(".word");
-let activeKeyboard = true;
-let isFormSubmitted = false;
-let testMax = 7;
-let testLeftText = testMax;
-let scoreText = sessionStorage.getItem("score")
-  ? parseInt(sessionStorage.getItem("score"))
-  : 0;
-let recordText = localStorage.getItem("record")
+let activeKeyboard = true;    // acive ou désactive le clavier physique vis à vis des modales                              
+let isFormSubmitted = false;  // permet de ne pas lancer "proposer mot" plusieurs fois et perdre plusieurs points
+let testMax = 7;              // à modifier... mais attention les images ... à adapter en fonction    
+let testLeftText = testMax;   // nb de coup restant
+let scoreText = createScoreIfNull()
+let recordText = localStorage.getItem("record")   //record mis en mémoire à chaque fin de manche
   ? parseInt(localStorage.getItem("record"))
   : 0;
-let chosenLetter;
-let chosenWord = newWordToPlay();
-let wordInArray = chosenWord.split("");
-let arrayWord = wordInArray; //  me permettra de selectionner une lettre à acheter
+let chosenLetter;                          // lettre choisie à l'écran ou sur clavier physique
+let chosenWord = newWordToPlay();         // mot à deviner
+let wordInArray = chosenWord.split("");  // mot à deviner découpé dans un tableau
+let leftLetters = wordInArray;            // lettre restant à découvrir. Utile pour les achat de voyelles et consonnes
 
 // Créez une fonction pour activer l'écoute des événements clavier
 function activateKeyboard() {
@@ -151,8 +151,8 @@ function goodLetter(letterElement) {
       updateScore(scoreText);
       letterElement.classList.add("right");
 
-      arrayWord = arrayWord.filter((elt) => elt !== letter);
-      if (arrayWord.length === 0) {
+      leftLetters = leftLetters.filter((elt) => elt !== letter);
+      if (leftLetters.length === 0) {
         updateRecord(scoreText, recordText)
         setTimeout(() => {
         testWin(scoreText, wordInArray, recordText);
@@ -160,7 +160,7 @@ function goodLetter(letterElement) {
         }, 150);
       }
     }
-    console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
+    console.log("leftLetters : " + leftLetters); //#################### à effacer à terme
   });
 }
 
@@ -233,10 +233,10 @@ btnReset.addEventListener("click", () => {
 
 // achats joker
 btnBuyVowel.addEventListener("click", () => {
-  buyVowel(arrayWord);
+  buyVowel(leftLetters);
 });
 btnBuyConsonant.addEventListener("click", () => {
-  buyConsonant(arrayWord);
+  buyConsonant(leftLetters);
 });
 
 // action sur btn proposition mot
@@ -250,19 +250,29 @@ btnPropose.addEventListener("click", () => {
 
 // fonction soumission formulaire
 function submitSuggestedWord() {
+  console.log("submitSuggestedWord en cours");
   closeSuggestedWord();
   if (isFormSubmitted) {
-    //empeche le cumul des appels à la fonction
+    isFormSubmitted = true;//empeche le cumul des appels à la fonction
     return;
   } else {
     formSuggestedWord.addEventListener("submit", (event) => {
       event.preventDefault();
       isFormSubmitted = true;
       let proposedWord = suggestedWord.value;
+      if(proposedWord===""){
+        let textInitial = label.innerText
+        label.innerText = "C'est vide ! Propose une mot ! 😅"
+        setTimeout(() => {
+          label.innerText =textInitial
+        }, 3000);
+        return
+      }
       if (proposedWord.toUpperCase() === chosenWord.toUpperCase()) {
+        let oldScore = createScoreIfNull()
         let newScore =
           parseInt(wordInArray.length) +
-          parseInt(sessionStorage.getItem("score"));
+          parseInt(oldScore);
         testWin(newScore, recordText);
       } else {
         badWord.classList.remove("dnone");
@@ -274,6 +284,7 @@ function submitSuggestedWord() {
       suggestedWord.value = "";
       suggestWord.classList.add("dnone");
       activateKeyboard();
+      isFormSubmitted = false;
       return;
     });
   }
@@ -302,11 +313,9 @@ function startGame() {
   updateTestLeft(testLeftText, testMax);
   showRecord(localStorage.getItem("record"));
   showWord();
-  console.log("arrayWord : " + arrayWord); //#################### à effacer à terme
+  console.log("leftLetters : " + leftLetters); //#################### à effacer à terme
 }
 
 startGame();
 const letters_word = document.querySelectorAll(".letter_word");
 
-console.log("s : " + scoreText);
-console.log("r : " + recordText);
