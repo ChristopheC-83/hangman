@@ -123,12 +123,8 @@ function oneLostPoint() {
   drawingHangman(testLeftText, testMax);
 
   if (testLeftText === 0) {
-    console.log("s : " + scoreText);
-    console.log("r : " + recordText);
     updateRecord(scoreText, recordText);
     showRecord(localStorage.getItem("record"));
-    console.log("s : " + scoreText);
-    console.log("r : " + recordText);
     setTimeout(() => {
       endParty(0, defeat);
       unknowWord.textContent = sessionStorage.getItem("motADeviner");
@@ -156,7 +152,6 @@ function goodLetter(letterElement) {
         }, 150);
       }
     }
-    console.log("leftLetters : " + leftLetters); //#################### à effacer à terme
   });
 }
 
@@ -247,7 +242,6 @@ btnPropose.addEventListener("click", () => {
 
 // fonction soumission formulaire
 function submitSuggestedWord() {
-  console.log("submitSuggestedWord en cours");
   closeSuggestedWord();
   if (isFormSubmitted) {
     isFormSubmitted = true; //empeche le cumul des appels à la fonction
@@ -270,7 +264,6 @@ function submitSuggestedWord() {
         testWin(newScore, recordText);
       } else {
         badWord.classList.remove("dnone");
-        console.log("pb ici ?");
         setTimeout(() => {
           closeModal(badWord);
         }, 500);
@@ -280,7 +273,6 @@ function submitSuggestedWord() {
       suggestWord.classList.add("dnone");
       activateKeyboard();
       isFormSubmitted = false;
-      // return;
     });
   }
 

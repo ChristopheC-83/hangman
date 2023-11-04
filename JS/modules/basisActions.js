@@ -17,13 +17,6 @@ export function drawingHangman(testLeftText, testMax) {
   } else {
     imgHangman[numberImg].classList.add("appearHangman");
   }
-  // if (numberImg === 7) {
-  //   setTimeout(() => {
-  //     imgHangman[4].classList.add("finalHangman");
-  //     imgHangman[5].classList.add("finalHangman");
-  //     imgHangman[6].classList.add("finalHangman");
-  //   }, 500);
-  // }
   if (numberImg === 7) {
     setTimeout(() => {
       imgHangman[4].classList.add("finalHangman");

@@ -31,7 +31,7 @@ header h1 {
 }
 header h2 {
   transform: translateX(-20%);
-  animation: soustitre 1.5s ease-in-out  forwards;
+  animation: soustitre 1.5s ease-in-out forwards;
 }
 @keyframes soustitre {
   to {
@@ -51,18 +51,23 @@ footer p {
 }
 
 .content {
+  position: relative;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   font-size: 25px;
-  background: linear-gradient(22deg, rgb(175, 175, 175) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(
+    22deg,
+    rgb(175, 175, 175) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
-iframe{
-border-radius: 10px;
-box-shadow: 2px 2px 20px #33333395;
+iframe {
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px #33333395;
 }
 
 a {
@@ -83,4 +88,23 @@ a:hover {
   background-color: #003883;
   font-size: 29px;
   padding: 18px;
+}
+
+.buy {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  font-size: 14px;
+  border: 3px solid black;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  color: yellow;
+  background-color: #333;
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+}
+.buy:hover{
+
+  background-color: #666;
 }

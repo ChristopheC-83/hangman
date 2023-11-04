@@ -89,5 +89,5 @@ function suggestLetter_updateNbHT(cost) {
   nbHT -= cost;
   sessionStorage.setItem("nbHT", nbHT);
   ht_left.textContent = nbHT;
-  console.log("on propose le : " + proposedLetter);
+  // console.log("on propose le : " + proposedLetter);  Voir la lettre proposée dans la console à l'achat
 }
